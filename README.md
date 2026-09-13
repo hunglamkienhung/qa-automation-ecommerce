@@ -1,5 +1,13 @@
 # qa-automation-ecommerce
 
+![Pytest-BDD](https://img.shields.io/badge/Pytest--BDD-tests-0A9EDC?logo=pytest&logoColor=white)
+![Cucumber](https://img.shields.io/badge/Cucumber-BDD-23D96C?logo=cucumber&logoColor=white)
+![Playwright](https://img.shields.io/badge/Playwright-E2E-2EAD33?logo=playwright&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-store-003B57?logo=sqlite&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
+![Node](https://img.shields.io/badge/Node-24-5FA04E?logo=nodedotjs&logoColor=white)
+[![CI](https://github.com/hunglamkienhung/qa-automation-ecommerce/actions/workflows/ci.yml/badge.svg)](https://github.com/hunglamkienhung/qa-automation-ecommerce/actions/workflows/ci.yml)
+
 QA automation for an e-commerce domain, built as a working system rather than a
 slideshow. One shopping domain tested at **every layer it has** — database, API,
 and screen — by **two independent stacks** (Node with Cucumber, Python with
