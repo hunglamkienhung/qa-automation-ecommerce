@@ -1,0 +1,21 @@
+[project]
+name = "ecommerce-qa"
+version = "1.0.0"
+description = "E-commerce domain: FE on a live site and a self-written mini-shop; BE over the mini-shop's DB and API and the live site's API"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+bdd_features_base_dir = "../features"
+addopts = "-q -p no:cacheprovider"
+filterwarnings = ["ignore:Unknown pytest.mark.case:pytest.PytestUnknownMarkWarning"]
+markers = [
+  "case_id(id): the immutable catalogue ID this scenario reports against",
+  "be: backend branch -- no browser",
+  "fe: frontend branch -- Playwright",
+  "db: reads the mini-shop SQLite file directly",
+  "api: calls an HTTP API",
+  "minishop: target is the self-written mini-shop",
+  "site: target is the live automationexercise.com",
+]
+testpaths = ["be", "fe"]

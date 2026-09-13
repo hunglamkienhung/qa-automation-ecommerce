@@ -1,0 +1,1841 @@
+{
+  "meta": {
+    "domain": "ecommerce",
+    "targets": {
+      "minishop-db": "mini-shop SQLite, written by the service (be/db, both stacks open the same file)",
+      "minishop-api": "mini-shop REST over that SQLite (be/api)",
+      "site-api": "automationexercise.com public API (no key)",
+      "minishop-fe": "mini-shop HTML pages (Playwright)",
+      "site-fe": "automationexercise.com storefront (Playwright)"
+    },
+    "idPolicy": "immutable",
+    "nextId": 156,
+    "note": "Generated from features/*.feature by testcases/build.js. Every scenario carries @case:N; an N missing here is an error."
+  },
+  "cases": {
+    "1": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "The store has the documented tables",
+      "priority": "High",
+      "steps": [
+        "Then the store has tables categories, products, customers, carts, cart_items, coupons, orders, order_items, stock_movements"
+      ]
+    },
+    "2": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "A product SKU is unique",
+      "priority": "High",
+      "steps": [
+        "Given a throwaway database with the schema applied",
+        "Then inserting two products with the same SKU fails on the second"
+      ]
+    },
+    "3": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "Order lines reference a real order and a real product",
+      "priority": "High",
+      "steps": [
+        "Given a throwaway database with the schema applied",
+        "Then inserting an order_items row for a missing order fails a FOREIGN KEY",
+        "And inserting an order_items row for a missing product fails a FOREIGN KEY"
+      ]
+    },
+    "4": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "Amounts and quantities are bounded by CHECK",
+      "priority": "High",
+      "steps": [
+        "Given a throwaway database with the schema applied",
+        "Then inserting a product with negative price fails a CHECK",
+        "And inserting a product with negative stock fails a CHECK",
+        "And inserting a cart item with zero quantity fails a CHECK"
+      ]
+    },
+    "5": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "A stock movement is a real, non-zero change with a known reason",
+      "priority": "Medium",
+      "steps": [
+        "Given a throwaway database with the schema applied",
+        "Then inserting a stock movement with zero delta fails a CHECK",
+        "And inserting a stock movement with reason \"theft\" fails a CHECK"
+      ]
+    },
+    "6": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "Seeding twice leaves the same rows",
+      "priority": "Medium",
+      "steps": [
+        "Given a throwaway database with the schema and seed applied",
+        "Then applying the seed again changes no row counts"
+      ]
+    },
+    "7": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "A checkout creates an order whose total equals the sum of its lines",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 2 of product 1 and 1 of product 2",
+        "When the buyer checks out",
+        "Then the order total equals the sum of its line amounts"
+      ]
+    },
+    "8": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "Order lines capture the price at purchase",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 1 of product 4",
+        "When the buyer checks out",
+        "Then each order line price equals the product's price at purchase"
+      ]
+    },
+    "9": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "Checkout decrements stock by the ordered quantity",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the stock of product 1 is noted",
+        "And the cart holds 3 of product 1",
+        "When the buyer checks out",
+        "Then the stock of product 1 fell by 3"
+      ]
+    },
+    "10": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "Checkout records a matching stock movement",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 2 of product 2",
+        "When the buyer checks out",
+        "Then a stock movement of -2 for product 2 with reason \"checkout\" is linked to the order"
+      ]
+    },
+    "11": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "The stock ledger balances against the running stock",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 1 of product 7",
+        "When the buyer checks out",
+        "Then the sum of movements for product 7 equals its current stock"
+      ]
+    },
+    "12": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "An oversell is refused and leaves the store untouched",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the stock of product 5 is noted",
+        "And the order count is noted",
+        "When the buyer tries to check out 999 of product 5",
+        "Then the checkout is refused with code \"insufficient_stock\"",
+        "And the stock of product 5 is unchanged",
+        "And no new order was created"
+      ]
+    },
+    "13": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "An empty cart cannot be checked out",
+      "priority": "Medium",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the order count is noted",
+        "When the buyer checks out",
+        "Then the checkout is refused with code \"empty_cart\"",
+        "And no new order was created"
+      ]
+    },
+    "14": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "A checked-out cart is marked so",
+      "priority": "Medium",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 1 of product 1",
+        "When the buyer checks out",
+        "Then the cart row status is \"checked_out\""
+      ]
+    },
+    "15": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "The order belongs to the buyer who placed it",
+      "priority": "Medium",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 1 of product 1",
+        "When the buyer checks out",
+        "Then the order's customer is the buyer"
+      ]
+    },
+    "16": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "One order line per distinct cart line",
+      "priority": "Medium",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 1 of product 1 and 2 of product 2 and 1 of product 7",
+        "When the buyer checks out",
+        "Then the order has 3 order lines"
+      ]
+    },
+    "17": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "A percentage coupon is applied to the order",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 2 of product 2",
+        "When the buyer checks out with coupon \"SAVE10\"",
+        "Then the order discount is 10 percent of the subtotal",
+        "And the order total is the subtotal minus the discount"
+      ]
+    },
+    "18": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "A coupon redemption is counted exactly once",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the redemption count of coupon \"SAVE10\" is noted",
+        "And the cart holds 1 of product 2",
+        "When the buyer checks out with coupon \"SAVE10\"",
+        "Then the redemption count of coupon \"SAVE10\" grew by 1"
+      ]
+    },
+    "19": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "A single-redemption coupon cannot be spent twice",
+      "priority": "High",
+      "steps": [
+        "Given coupon \"ONCE\" has been fully redeemed",
+        "And a registered buyer with a cart",
+        "And the cart holds 1 of product 1",
+        "When the buyer checks out with coupon \"ONCE\"",
+        "Then the checkout is refused with code \"coupon_exhausted\""
+      ]
+    },
+    "20": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "A repeated checkout with the same idempotency key makes one order",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 1 of product 1",
+        "And the order count is noted",
+        "When the buyer checks out with idempotency key \"abc-123\"",
+        "And the buyer checks out again with idempotency key \"abc-123\"",
+        "Then exactly one new order was created",
+        "And both checkouts returned the same order id"
+      ]
+    },
+    "21": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "No order line references a missing product",
+      "priority": "Medium",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 1 of product 1",
+        "When the buyer checks out",
+        "Then no order_items row references a product missing from products"
+      ]
+    },
+    "22": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "No order references a missing cart",
+      "priority": "Medium",
+      "steps": [
+        "Then no orders row references a cart missing from carts"
+      ]
+    },
+    "23": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "The subtotal on the order equals the sum of quantity times price",
+      "priority": "Medium",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 2 of product 3 and 1 of product 8",
+        "When the buyer checks out",
+        "Then the order subtotal equals the sum of quantity times captured price"
+      ]
+    },
+    "24": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "The order total equals subtotal minus discount",
+      "priority": "Medium",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 1 of product 2",
+        "When the buyer checks out with coupon \"SAVE10\"",
+        "Then the order total equals the subtotal minus the discount on the row"
+      ]
+    },
+    "25": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "Stock never runs negative across repeated checkouts",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "When the buyer checks out 1 of product 5, 5 times",
+        "Then the stock of product 5 is not negative"
+      ]
+    },
+    "26": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "Checkout of <sym> decrements its stock and records a movement",
+      "priority": "Medium",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the stock of product <pid> is noted",
+        "And the cart holds 2 of product <pid>",
+        "When the buyer checks out",
+        "Then the stock of product <pid> fell by 2",
+        "And a stock movement of -2 for product <pid> with reason \"checkout\" is linked to the order"
+      ]
+    },
+    "27": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "Checkout of <sym> decrements its stock and records a movement",
+      "priority": "Medium",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the stock of product <pid> is noted",
+        "And the cart holds 2 of product <pid>",
+        "When the buyer checks out",
+        "Then the stock of product <pid> fell by 2",
+        "And a stock movement of -2 for product <pid> with reason \"checkout\" is linked to the order"
+      ]
+    },
+    "28": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "Checkout of <sym> decrements its stock and records a movement",
+      "priority": "Medium",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the stock of product <pid> is noted",
+        "And the cart holds 2 of product <pid>",
+        "When the buyer checks out",
+        "Then the stock of product <pid> fell by 2",
+        "And a stock movement of -2 for product <pid> with reason \"checkout\" is linked to the order"
+      ]
+    },
+    "29": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "Adding to a cart writes a cart line",
+      "priority": "Medium",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "When the buyer adds 4 of product 1 to the cart",
+        "Then a cart_items row holds 4 of product 1"
+      ]
+    },
+    "30": {
+      "module": "01-minishop-db",
+      "layer": "BE/DB",
+      "tier": "minishop-db",
+      "title": "A seeded product's ledger balances from the start",
+      "priority": "Medium",
+      "steps": [
+        "Then the seed movements for product 1 sum to a stock at or above its current stock"
+      ]
+    },
+    "31": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "/products returns the active products, priced from the rows",
+      "priority": "High",
+      "steps": [
+        "When GET /products?limit=100",
+        "Then the response status is 200",
+        "And every product in the response matches its row",
+        "And no inactive product appears"
+      ]
+    },
+    "32": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "/products paginates without repeating or dropping a row",
+      "priority": "High",
+      "steps": [
+        "When the products are paged 3 at a time",
+        "Then the paged products are exactly the active products, each once"
+      ]
+    },
+    "33": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "/products total counts the whole active set, not the page",
+      "priority": "Medium",
+      "steps": [
+        "When GET /products?limit=2",
+        "Then the response field \"total\" equals the count of active products",
+        "And the response list \"products\" has 2 entries"
+      ]
+    },
+    "34": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "/products can be filtered by category",
+      "priority": "Medium",
+      "steps": [
+        "When GET /products?category=2&limit=100",
+        "Then every product in the response has category_id 2",
+        "And the response field \"total\" equals the count of active products in category 2"
+      ]
+    },
+    "35": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "/products can be sorted by price",
+      "priority": "Medium",
+      "steps": [
+        "When GET /products?sort=price&limit=100",
+        "Then the products are ordered by ascending price"
+      ]
+    },
+    "36": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "/products rejects a bad page or limit",
+      "priority": "Low",
+      "steps": [
+        "When GET /products?limit=0",
+        "Then the response status is 400",
+        "When GET /products?page=0",
+        "Then the response status is 400",
+        "When GET /products?category=999",
+        "Then the response status is 404",
+        "When GET /products?sort=colour",
+        "Then the response status is 400"
+      ]
+    },
+    "37": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "/products/:id returns the row, and hides an inactive product",
+      "priority": "High",
+      "steps": [
+        "When GET /products/1",
+        "Then the response status is 200",
+        "And the product in the response matches row 1",
+        "When GET /products/9",
+        "Then the response status is 404",
+        "When GET /products/999",
+        "Then the response status is 404"
+      ]
+    },
+    "38": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "/categories returns every category row",
+      "priority": "Medium",
+      "steps": [
+        "When GET /categories",
+        "Then the categories in the response equal the category rows"
+      ]
+    },
+    "39": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "/search matches names and never returns an inactive product",
+      "priority": "High",
+      "steps": [
+        "When GET /search?q=Shoe",
+        "Then every product in the response matches its row",
+        "And no inactive product appears",
+        "And every product name contains \"Shoe\""
+      ]
+    },
+    "40": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "/search requires a query",
+      "priority": "Low",
+      "steps": [
+        "When GET /search",
+        "Then the response status is 400",
+        "And the response is an error with code \"bad_request\""
+      ]
+    },
+    "41": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "A new cart is empty with a zero subtotal",
+      "priority": "High",
+      "steps": [
+        "When POST /cart",
+        "Then the response status is 201",
+        "And the cart subtotal is 0",
+        "And the cart has 0 items"
+      ]
+    },
+    "42": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "Adding an item reflects the row and the line total",
+      "priority": "High",
+      "steps": [
+        "Given a fresh cart",
+        "When 2 of product 2 are added to the cart",
+        "Then the cart holds 2 of product 2 priced from the row",
+        "And the cart subtotal equals the sum of its line totals"
+      ]
+    },
+    "43": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "Adding the same product twice merges into one line",
+      "priority": "Medium",
+      "steps": [
+        "Given a fresh cart",
+        "When 1 of product 1 are added to the cart",
+        "And 2 of product 1 are added to the cart",
+        "Then the cart has 1 items",
+        "And the cart holds 3 of product 1 priced from the row"
+      ]
+    },
+    "44": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "A quantity beyond stock is refused",
+      "priority": "High",
+      "steps": [
+        "Given a fresh cart",
+        "When 999 of product 5 are added to the cart",
+        "Then the response status is 409",
+        "And the response is an error with code \"insufficient_stock\""
+      ]
+    },
+    "45": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "Setting a line quantity to zero removes it",
+      "priority": "Medium",
+      "steps": [
+        "Given a fresh cart",
+        "And 3 of product 1 in the cart",
+        "When the quantity of product 1 is set to 0",
+        "Then the cart has 0 items"
+      ]
+    },
+    "46": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "An unknown product cannot be added",
+      "priority": "Low",
+      "steps": [
+        "Given a fresh cart",
+        "When 1 of product 999 are added to the cart",
+        "Then the response status is 404"
+      ]
+    },
+    "47": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "An inactive product cannot be added",
+      "priority": "Low",
+      "steps": [
+        "Given a fresh cart",
+        "When 1 of product 9 are added to the cart",
+        "Then the response status is 404"
+      ]
+    },
+    "48": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "A non-positive quantity is rejected",
+      "priority": "Low",
+      "steps": [
+        "Given a fresh cart",
+        "When 0 of product 1 are added to the cart",
+        "Then the response status is 400"
+      ]
+    },
+    "49": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "The cart subtotal always equals the sum of its lines",
+      "priority": "Medium",
+      "steps": [
+        "Given a fresh cart",
+        "And 2 of product 1 in the cart",
+        "And 1 of product 8 in the cart",
+        "When GET the cart",
+        "Then the cart subtotal equals the sum of its line totals"
+      ]
+    },
+    "50": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "An unknown cart is 404",
+      "priority": "Low",
+      "steps": [
+        "When GET /cart/nope",
+        "Then the response status is 404"
+      ]
+    },
+    "51": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "A percentage coupon returns the right discount",
+      "priority": "High",
+      "steps": [
+        "When the coupon \"SAVE10\" is applied to a subtotal of 10000",
+        "Then the response field \"discount_cents\" is 1000",
+        "And the response field \"total_cents\" is 9000"
+      ]
+    },
+    "52": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "A fixed coupon below its minimum spend is refused",
+      "priority": "High",
+      "steps": [
+        "When the coupon \"TENOFF\" is applied to a subtotal of 4000",
+        "Then the response status is 400",
+        "And the response is an error with code \"coupon_min_spend\""
+      ]
+    },
+    "53": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "A fixed coupon at or above its minimum spend applies",
+      "priority": "Medium",
+      "steps": [
+        "When the coupon \"TENOFF\" is applied to a subtotal of 6000",
+        "Then the response field \"discount_cents\" is 1000"
+      ]
+    },
+    "54": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "An inactive coupon is refused",
+      "priority": "Medium",
+      "steps": [
+        "When the coupon \"EXPIRED\" is applied to a subtotal of 10000",
+        "Then the response status is 400",
+        "And the response is an error with code \"coupon_inactive\""
+      ]
+    },
+    "55": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "An unknown coupon is 404",
+      "priority": "Low",
+      "steps": [
+        "When the coupon \"NOPE\" is applied to a subtotal of 10000",
+        "Then the response status is 404"
+      ]
+    },
+    "56": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "A discount never exceeds the subtotal",
+      "priority": "Medium",
+      "steps": [
+        "When the coupon \"TENOFF\" is applied to a subtotal of 5000",
+        "Then the response field \"discount_cents\" is at most the subtotal 5000"
+      ]
+    },
+    "57": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "Registration issues a token; the email cannot be reused",
+      "priority": "High",
+      "steps": [
+        "When a buyer registers",
+        "Then the response status is 201",
+        "And the response has a token",
+        "When the same email registers again",
+        "Then the response status is 409",
+        "And the response is an error with code \"email_taken\""
+      ]
+    },
+    "58": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "Login returns a token for the right password and 401 otherwise",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer",
+        "When the buyer logs in with the right password",
+        "Then the response status is 200",
+        "And the response has a token",
+        "When the buyer logs in with a wrong password",
+        "Then the response status is 401",
+        "And the response is an error with code \"bad_credentials\""
+      ]
+    },
+    "59": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "Checkout requires a token",
+      "priority": "High",
+      "steps": [
+        "Given a fresh cart",
+        "And 1 of product 1 in the cart",
+        "When checkout is posted with no token",
+        "Then the response status is 401",
+        "And the response is an error with code \"unauthenticated\""
+      ]
+    },
+    "60": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "A checkout returns an order equal to the stored order",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 1 of product 1 and 1 of product 2",
+        "When the buyer checks out",
+        "Then the response status is 201",
+        "And the order in the response equals the stored order"
+      ]
+    },
+    "61": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "The order response total equals the sum of its line amounts",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 2 of product 4",
+        "When the buyer checks out",
+        "Then the order total in the response equals the sum of its line amounts"
+      ]
+    },
+    "62": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "GET /orders/:id returns the order to its owner and 403 to anyone else",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 1 of product 1",
+        "And the buyer checks out",
+        "When the owner reads the order",
+        "Then the response status is 200",
+        "And the order in the response equals the stored order",
+        "When a different buyer reads the order",
+        "Then the response status is 403",
+        "And the response is an error with code \"forbidden\""
+      ]
+    },
+    "63": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "An unauthenticated order read is 401",
+      "priority": "Medium",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 1 of product 1",
+        "And the buyer checks out",
+        "When the order is read with no token",
+        "Then the response status is 401"
+      ]
+    },
+    "64": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "A retried checkout with the same idempotency key returns the same order",
+      "priority": "Medium",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 1 of product 1",
+        "When the buyer checks out with idempotency key \"api-key-1\"",
+        "And the buyer checks out again with idempotency key \"api-key-1\"",
+        "Then both checkouts returned the same order id"
+      ]
+    },
+    "65": {
+      "module": "02-minishop-api",
+      "layer": "BE/API",
+      "tier": "minishop-api",
+      "title": "A consistent error shape and a 404 for unknown routes",
+      "priority": "Low",
+      "steps": [
+        "When GET /nowhere",
+        "Then the response status is 404",
+        "And the response is an error with code \"not_found\""
+      ]
+    },
+    "66": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "The product list answers 200 and is non-empty",
+      "priority": "High",
+      "steps": [
+        "When the site product list is fetched",
+        "Then the site response code is 200",
+        "And the product list is non-empty"
+      ]
+    },
+    "67": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "Every product has a unique id",
+      "priority": "High",
+      "steps": [
+        "When the site product list is fetched",
+        "Then no product id appears more than once"
+      ]
+    },
+    "68": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "Every product price parses as a non-negative amount",
+      "priority": "High",
+      "steps": [
+        "When the site product list is fetched",
+        "Then every product price parses to a non-negative number"
+      ]
+    },
+    "69": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "Every product carries a name, brand and category",
+      "priority": "Medium",
+      "steps": [
+        "When the site product list is fetched",
+        "Then every product has a non-empty name, brand and category"
+      ]
+    },
+    "70": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "The product list rejects POST as an unsupported method",
+      "priority": "Low",
+      "steps": [
+        "When the site product list is posted to",
+        "Then the site response code is 405"
+      ]
+    },
+    "71": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "The brand list answers 200 and is non-empty",
+      "priority": "High",
+      "steps": [
+        "When the site brand list is fetched",
+        "Then the site response code is 200",
+        "And the brand list is non-empty"
+      ]
+    },
+    "72": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "Every brand has an id and a name",
+      "priority": "Medium",
+      "steps": [
+        "When the site brand list is fetched",
+        "Then every brand has an id and a non-empty name"
+      ]
+    },
+    "73": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "The brand list rejects POST",
+      "priority": "Low",
+      "steps": [
+        "When the site brand list is posted to",
+        "Then the site response code is 405"
+      ]
+    },
+    "74": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "Searching for \"<term>\" returns a non-empty subset of the catalogue",
+      "priority": "High",
+      "steps": [
+        "Given the full product list is fetched",
+        "When the site is searched for \"<term>\"",
+        "Then the site response code is 200",
+        "And every returned product id is in the full product list",
+        "And the search returns at least one product"
+      ]
+    },
+    "75": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "Searching for \"<term>\" returns a non-empty subset of the catalogue",
+      "priority": "High",
+      "steps": [
+        "Given the full product list is fetched",
+        "When the site is searched for \"<term>\"",
+        "Then the site response code is 200",
+        "And every returned product id is in the full product list",
+        "And the search returns at least one product"
+      ]
+    },
+    "76": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "Searching for \"<term>\" returns a non-empty subset of the catalogue",
+      "priority": "High",
+      "steps": [
+        "Given the full product list is fetched",
+        "When the site is searched for \"<term>\"",
+        "Then the site response code is 200",
+        "And every returned product id is in the full product list",
+        "And the search returns at least one product"
+      ]
+    },
+    "77": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "A search with no term is a bad request",
+      "priority": "Medium",
+      "steps": [
+        "When the site is searched with no term",
+        "Then the site response code is 400"
+      ]
+    },
+    "78": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "A search that matches nothing returns an empty list, not an error",
+      "priority": "Low",
+      "steps": [
+        "When the site is searched for \"zzqqxx-no-such-product\"",
+        "Then the site response code is 200",
+        "And the returned product list is empty"
+      ]
+    },
+    "79": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "verifyLogin without credentials is a bad request",
+      "priority": "High",
+      "steps": [
+        "When login is verified with no email",
+        "Then the site response code is 400"
+      ]
+    },
+    "80": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "verifyLogin for an unregistered email is not found",
+      "priority": "Medium",
+      "steps": [
+        "When login is verified for an unregistered email",
+        "Then the site response code is 404"
+      ]
+    },
+    "81": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "verifyLogin rejects DELETE",
+      "priority": "Low",
+      "steps": [
+        "When login verification is sent as DELETE",
+        "Then the site response code is 405"
+      ]
+    },
+    "82": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "An unknown user detail lookup is not found",
+      "priority": "Medium",
+      "steps": [
+        "When the detail of an unregistered email is fetched",
+        "Then the site response code is 404"
+      ]
+    },
+    "83": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "The product list and search draw from the same catalogue",
+      "priority": "Medium",
+      "steps": [
+        "When the site product list is fetched",
+        "And the site is searched for \"Top\"",
+        "Then every searched product id is in the full product list"
+      ]
+    },
+    "84": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "Every product category names a user type",
+      "priority": "Medium",
+      "steps": [
+        "When the site product list is fetched",
+        "Then every product category has a category and a user type"
+      ]
+    },
+    "85": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "The product list is stable across two reads",
+      "priority": "Low",
+      "steps": [
+        "When the site product list is fetched",
+        "And the site product list is fetched again",
+        "Then both reads return the same product ids"
+      ]
+    },
+    "86": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "Brand ids are unique",
+      "priority": "Medium",
+      "steps": [
+        "When the site brand list is fetched",
+        "Then no brand id appears more than once"
+      ]
+    },
+    "87": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "Every product id is a positive integer",
+      "priority": "Low",
+      "steps": [
+        "When the site product list is fetched",
+        "Then every product id is a positive integer"
+      ]
+    },
+    "88": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "The response body is well-formed JSON with a numeric response code",
+      "priority": "Low",
+      "steps": [
+        "When the site product list is fetched",
+        "Then the response body is a JSON object carrying a numeric response code"
+      ]
+    },
+    "89": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "The search for \"<term>\" is a subset of the catalogue by count",
+      "priority": "Medium",
+      "steps": [
+        "When the site product list is fetched",
+        "And the site is searched for \"<term>\"",
+        "Then the search returns no more products than the full catalogue"
+      ]
+    },
+    "90": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "The search for \"<term>\" is a subset of the catalogue by count",
+      "priority": "Medium",
+      "steps": [
+        "When the site product list is fetched",
+        "And the site is searched for \"<term>\"",
+        "Then the search returns no more products than the full catalogue"
+      ]
+    },
+    "91": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "The search for \"<term>\" is a subset of the catalogue by count",
+      "priority": "Medium",
+      "steps": [
+        "When the site product list is fetched",
+        "And the site is searched for \"<term>\"",
+        "Then the search returns no more products than the full catalogue"
+      ]
+    },
+    "92": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "Prices are quoted in the documented \"Rs. N\" form",
+      "priority": "Low",
+      "steps": [
+        "When the site product list is fetched",
+        "Then every product price matches the \"Rs. N\" format"
+      ]
+    },
+    "93": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "Every brand name is trimmed and non-empty",
+      "priority": "Low",
+      "steps": [
+        "When the site brand list is fetched",
+        "Then every brand name is non-empty when trimmed"
+      ]
+    },
+    "94": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "A case-insensitive search still matches",
+      "priority": "Medium",
+      "steps": [
+        "When the site is searched for \"top\"",
+        "And the site is searched for \"TOP\"",
+        "Then both searches return the same product count"
+      ]
+    },
+    "95": {
+      "module": "03-site-api",
+      "layer": "BE/API",
+      "tier": "site-api",
+      "title": "The catalogue has at least a dozen products",
+      "priority": "Low",
+      "steps": [
+        "When the site product list is fetched",
+        "Then the product list has at least 12 products"
+      ]
+    },
+    "96": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The catalogue lists exactly the active products",
+      "priority": "High",
+      "steps": [
+        "Then the catalogue lists the active products, once each"
+      ]
+    },
+    "97": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "Every catalogue price on screen matches its row",
+      "priority": "High",
+      "steps": [
+        "Then every catalogue price on screen equals the product row"
+      ]
+    },
+    "98": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The out-of-stock product is labelled out of stock",
+      "priority": "High",
+      "steps": [
+        "Then product 6 is shown out of stock"
+      ]
+    },
+    "99": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "In-stock products are labelled in stock",
+      "priority": "Medium",
+      "steps": [
+        "Then product 1 is shown in stock"
+      ]
+    },
+    "100": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The inactive product does not appear on the catalogue",
+      "priority": "Medium",
+      "steps": [
+        "Then the catalogue does not list product 9"
+      ]
+    },
+    "101": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "A product page shows the name, price and SKU from the row",
+      "priority": "High",
+      "steps": [
+        "When the product page for 4 is opened",
+        "Then the product page name, price and SKU equal row 4"
+      ]
+    },
+    "102": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "A product page shows the stock level from the row",
+      "priority": "Medium",
+      "steps": [
+        "When the product page for 2 is opened",
+        "Then the product page stock equals row 2"
+      ]
+    },
+    "103": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "An unknown product page is not found",
+      "priority": "Medium",
+      "steps": [
+        "When the product page for 999 is opened",
+        "Then the product page reports not found"
+      ]
+    },
+    "104": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The out-of-stock product page says so",
+      "priority": "Medium",
+      "steps": [
+        "When the product page for 6 is opened",
+        "Then the product page 6 is shown out of stock"
+      ]
+    },
+    "105": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "An order page shows the total the order was placed at",
+      "priority": "High",
+      "steps": [
+        "Given a placed order of 2 of product 1 and 1 of product 2",
+        "When the order page is opened",
+        "Then the order page total equals the stored order total"
+      ]
+    },
+    "106": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "An order page shows the order id and a placed status",
+      "priority": "Medium",
+      "steps": [
+        "Given a placed order of 1 of product 1",
+        "When the order page is opened",
+        "Then the order page shows the order id and status \"placed\""
+      ]
+    },
+    "107": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The catalogue price format is a dollar amount",
+      "priority": "Medium",
+      "steps": [
+        "Then every catalogue price is shown as a dollar amount"
+      ]
+    },
+    "108": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The catalogue is not empty",
+      "priority": "Low",
+      "steps": [
+        "Then the catalogue shows at least one product"
+      ]
+    },
+    "109": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "Each catalogue name matches its product row",
+      "priority": "Medium",
+      "steps": [
+        "Then every catalogue name on screen equals the product row"
+      ]
+    },
+    "110": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "An unknown order page is not found",
+      "priority": "Low",
+      "steps": [
+        "When the order page for 999999 is opened",
+        "Then the order page reports not found"
+      ]
+    },
+    "111": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The product page for <pid> matches its row",
+      "priority": "Medium",
+      "steps": [
+        "When the product page for <pid> is opened",
+        "Then the product page name, price and SKU equal row <pid>"
+      ]
+    },
+    "112": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The product page for <pid> matches its row",
+      "priority": "Medium",
+      "steps": [
+        "When the product page for <pid> is opened",
+        "Then the product page name, price and SKU equal row <pid>"
+      ]
+    },
+    "113": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The product page for <pid> matches its row",
+      "priority": "Medium",
+      "steps": [
+        "When the product page for <pid> is opened",
+        "Then the product page name, price and SKU equal row <pid>"
+      ]
+    },
+    "114": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "<label> product's price on the catalogue equals its row",
+      "priority": "Medium",
+      "steps": [
+        "Then the catalogue price for product <pid> equals its row"
+      ]
+    },
+    "115": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "<label> product's price on the catalogue equals its row",
+      "priority": "Medium",
+      "steps": [
+        "Then the catalogue price for product <pid> equals its row"
+      ]
+    },
+    "116": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "<label> product's price on the catalogue equals its row",
+      "priority": "Medium",
+      "steps": [
+        "Then the catalogue price for product <pid> equals its row"
+      ]
+    },
+    "117": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The catalogue product count equals the active count in the API",
+      "priority": "Medium",
+      "steps": [
+        "Then the catalogue count equals the API active product count"
+      ]
+    },
+    "118": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The product page price format is a dollar amount",
+      "priority": "Low",
+      "steps": [
+        "When the product page for 3 is opened",
+        "Then the product page price is shown as a dollar amount"
+      ]
+    },
+    "119": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "A product page name is non-empty",
+      "priority": "Low",
+      "steps": [
+        "When the product page for 8 is opened",
+        "Then the product page name is non-empty"
+      ]
+    },
+    "120": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The order page total is a dollar amount",
+      "priority": "Medium",
+      "steps": [
+        "Given a placed order of 1 of product 4",
+        "When the order page is opened",
+        "Then the order page total is shown as a dollar amount"
+      ]
+    },
+    "121": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The catalogue links each product to its own page",
+      "priority": "Low",
+      "steps": [
+        "Then each catalogue row links to its product page"
+      ]
+    },
+    "122": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "A discounted order page shows the discounted total",
+      "priority": "Medium",
+      "steps": [
+        "Given a placed order of 2 of product 2 with coupon \"SAVE10\"",
+        "When the order page is opened",
+        "Then the order page total equals the stored order total"
+      ]
+    },
+    "123": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "Every catalogue stock label is one of two known values",
+      "priority": "Low",
+      "steps": [
+        "Then every catalogue stock label is in stock or out of stock"
+      ]
+    },
+    "124": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The product page SKU matches its row exactly",
+      "priority": "Medium",
+      "steps": [
+        "When the product page for 7 is opened",
+        "Then the product page SKU equals row 7"
+      ]
+    },
+    "125": {
+      "module": "04-minishop-fe",
+      "layer": "FE/UI",
+      "tier": "minishop-fe",
+      "title": "The catalogue product ids are unique on screen",
+      "priority": "Low",
+      "steps": [
+        "Then no catalogue product id appears twice"
+      ]
+    },
+    "126": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "The storefront shows as many products as the API lists",
+      "priority": "High",
+      "steps": [
+        "Then the number of products on screen equals the API product count"
+      ]
+    },
+    "127": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "Every product on screen carries a name and a price",
+      "priority": "High",
+      "steps": [
+        "Then every product card on screen has a name and a price"
+      ]
+    },
+    "128": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "Every price on screen is in the \"Rs. N\" form",
+      "priority": "High",
+      "steps": [
+        "Then every product price on screen matches the \"Rs. N\" format"
+      ]
+    },
+    "129": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "Every product name on screen is one the API knows",
+      "priority": "Medium",
+      "steps": [
+        "Then every product name on screen is in the API product list"
+      ]
+    },
+    "130": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "The first product on screen matches the API's first product",
+      "priority": "Medium",
+      "steps": [
+        "Then the first product on screen matches the first API product"
+      ]
+    },
+    "131": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "The storefront shows at least a dozen products",
+      "priority": "Medium",
+      "steps": [
+        "Then the screen shows at least 12 products"
+      ]
+    },
+    "132": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "No product card is missing its price",
+      "priority": "Low",
+      "steps": [
+        "Then no product card on screen is missing a price"
+      ]
+    },
+    "133": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "No product card is missing its name",
+      "priority": "Low",
+      "steps": [
+        "Then no product card on screen is missing a name"
+      ]
+    },
+    "134": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "Product names on screen have no duplicates beyond the API's",
+      "priority": "Medium",
+      "steps": [
+        "Then the screen's product names are drawn from the API without inventing any"
+      ]
+    },
+    "135": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "Every price on screen parses to a non-negative number",
+      "priority": "Medium",
+      "steps": [
+        "Then every product price on screen parses to a non-negative number"
+      ]
+    },
+    "136": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "A search on screen returns a non-empty grid",
+      "priority": "High",
+      "steps": [
+        "When the storefront is searched for \"Top\"",
+        "Then the search grid on screen is non-empty"
+      ]
+    },
+    "137": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "A search on screen returns no more products than the catalogue",
+      "priority": "High",
+      "steps": [
+        "When the storefront is searched for \"Dress\"",
+        "Then the search grid has no more products than the catalogue"
+      ]
+    },
+    "138": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "Every search result name is one the API knows",
+      "priority": "Medium",
+      "steps": [
+        "When the storefront is searched for \"Jeans\"",
+        "Then every search result name is in the API product list"
+      ]
+    },
+    "139": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "A search that matches nothing shows an empty grid, not an error",
+      "priority": "Medium",
+      "steps": [
+        "When the storefront is searched for \"zzqqxx-no-such-product\"",
+        "Then the search grid on screen is empty"
+      ]
+    },
+    "140": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "Search prices are also in the \"Rs. N\" form",
+      "priority": "Low",
+      "steps": [
+        "When the storefront is searched for \"Top\"",
+        "Then every product price on screen matches the \"Rs. N\" format"
+      ]
+    },
+    "141": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "Searching the storefront for \"<term>\" agrees with the API count",
+      "priority": "Medium",
+      "steps": [
+        "When the storefront is searched for \"<term>\"",
+        "Then the number of products on screen equals the API search count for \"<term>\""
+      ]
+    },
+    "142": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "Searching the storefront for \"<term>\" agrees with the API count",
+      "priority": "Medium",
+      "steps": [
+        "When the storefront is searched for \"<term>\"",
+        "Then the number of products on screen equals the API search count for \"<term>\""
+      ]
+    },
+    "143": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "Searching the storefront for \"<term>\" agrees with the API count",
+      "priority": "Medium",
+      "steps": [
+        "When the storefront is searched for \"<term>\"",
+        "Then the number of products on screen equals the API search count for \"<term>\""
+      ]
+    },
+    "144": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "A case-different search returns the same count on screen",
+      "priority": "Medium",
+      "steps": [
+        "When the storefront is searched for \"top\"",
+        "Then the number of products on screen equals the API search count for \"top\""
+      ]
+    },
+    "145": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "The brand rail lists the brands the API knows",
+      "priority": "High",
+      "steps": [
+        "When the brand rail is read",
+        "Then every brand on screen is in the API brand list"
+      ]
+    },
+    "146": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "The brand rail is non-empty",
+      "priority": "Medium",
+      "steps": [
+        "When the brand rail is read",
+        "Then the brand rail on screen is non-empty"
+      ]
+    },
+    "147": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "The brand rail has no blank entries",
+      "priority": "Low",
+      "steps": [
+        "When the brand rail is read",
+        "Then no brand on screen is blank"
+      ]
+    },
+    "148": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "The product count on screen is stable across two loads",
+      "priority": "Medium",
+      "steps": [
+        "Then the product count on screen is the same on a second load"
+      ]
+    },
+    "149": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "Every product card price has a rupee symbol",
+      "priority": "Low",
+      "steps": [
+        "Then every product price on screen starts with \"Rs.\""
+      ]
+    },
+    "150": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "The screen's product names are a subset of the API's names",
+      "priority": "Medium",
+      "steps": [
+        "Then every product name on screen is in the API product list"
+      ]
+    },
+    "151": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "The grid shows unique product names in its first page",
+      "priority": "Low",
+      "steps": [
+        "Then the screen product names have no exact duplicates"
+      ]
+    },
+    "152": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "The most expensive on-screen price is a real API price",
+      "priority": "Medium",
+      "steps": [
+        "Then the highest price on screen equals a price the API lists"
+      ]
+    },
+    "153": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "The cheapest on-screen price is a real API price",
+      "priority": "Low",
+      "steps": [
+        "Then the lowest price on screen equals a price the API lists"
+      ]
+    },
+    "154": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "A search result count never exceeds the full grid count",
+      "priority": "Medium",
+      "steps": [
+        "When the storefront is searched for \"Shirt\"",
+        "Then the search grid has no more products than the catalogue"
+      ]
+    },
+    "155": {
+      "module": "05-site-fe",
+      "layer": "FE/UI",
+      "tier": "site-fe",
+      "title": "The products page has a heading",
+      "priority": "Low",
+      "steps": [
+        "Then the products page shows an \"All Products\" heading"
+      ]
+    }
+  }
+}
