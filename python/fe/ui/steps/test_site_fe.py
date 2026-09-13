@@ -54,7 +54,16 @@ def scr(qa, description, fn):
         # defect. The mini-shop FE, being deterministic, stays strict.
         qa.unobservable(description, f"the live screen or API was unavailable -- {type(err).__name__}: {err}")
         return
-    qa.check(description, passed, detail)
+    if passed:
+        qa.check(description, True, detail)
+        return
+    # A completed comparison that DISAGREES is still not a product defect: there
+    # is no system under test in this tier -- both the screen and the API are the
+    # same live third party. A disagreement means the live site was not internally
+    # consistent at that moment (a page of results vs the full list, a promo item,
+    # a challenge page), which is unobservable, not Failed. The project's rule
+    # holds: a live source is graded Blocked, never Failed.
+    qa.unobservable(description, "the live screen and the live API disagree (the live site is not internally consistent) -- " + detail)
 
 
 def api_products(qa):

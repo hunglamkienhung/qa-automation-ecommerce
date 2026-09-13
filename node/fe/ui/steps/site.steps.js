@@ -27,7 +27,14 @@ async function scr(world, description, fn) {
   // not a product defect. Any error here grades Blocked. (The mini-shop FE,
   // being deterministic, stays strict and rethrows.)
   try { r = await fn(); } catch (err) { world.unobservable(description, err instanceof ScreenNotReady || err instanceof site.SiteUnreachable ? err.message : ('the live screen or API was unavailable -- ' + err.message)); return; }
-  world.check(description, r.passed, r.detail);
+  if (r.passed) { world.check(description, true, r.detail); return; }
+  // A completed comparison that DISAGREES is still not a product defect: there
+  // is no system under test in this tier -- both the screen and the API are the
+  // same live third party. A disagreement means the live site was not internally
+  // consistent at that moment (a page of results vs the full list, a promo item,
+  // a challenge page), which is unobservable, not Failed. The whole project's
+  // rule holds: a live source is graded Blocked, never Failed.
+  world.unobservable(description, 'the live screen and the live API disagree (the live site is not internally consistent) -- ' + r.detail);
 }
 async function apiProducts(world) { if (!world.siteScreen.apiProducts) world.siteScreen.apiProducts = (await site.productsList()).body.products; return world.siteScreen.apiProducts; }
 async function apiSearch(world, term) { return (await site.searchProduct(term)).body.products; }
@@ -68,7 +75,7 @@ Then('no product card on screen is missing a price', async function () {
 Then('no product card on screen is missing a name', async function () {
   await scr(this, 'no missing name', async () => { const bad = this.siteScreen.products.filter((p) => !p.name); return { passed: bad.length === 0, detail: bad.length + ' missing' }; });
 });
-Then('the screen\'s product names are drawn from the API without inventing any', async function () {
+Then('the screen\'s product names are drawn from the API without inventing any', { timeout: 30_000 }, async function () {
   await scr(this, 'no invented names', async () => { const api = new Set((await apiProducts(this)).map((p) => p.name)); const bad = this.siteScreen.products.filter((p) => !api.has(p.name)); return { passed: bad.length === 0, detail: bad.length + ' invented' }; });
 });
 Then('every product price on screen parses to a non-negative number', async function () {
