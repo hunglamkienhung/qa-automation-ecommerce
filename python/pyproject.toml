@@ -17,5 +17,6 @@ markers = [
   "api: calls an HTTP API",
   "minishop: target is the self-written mini-shop",
   "site: target is the live automationexercise.com",
+  "security: probes the authentication surface (forged/tampered token, lockout, secret hygiene)",
 ]
 testpaths = ["be", "fe"]

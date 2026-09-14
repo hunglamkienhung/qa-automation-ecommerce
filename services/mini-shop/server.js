@@ -37,6 +37,8 @@ const H = require('./lib/http');
 const cfg = {
   port: Number(process.env.MINI_SHOP_PORT || 8090),
   dbFile: process.env.MINI_SHOP_DB || path.join(__dirname, 'data', 'mini-shop.db'),
+  loginMaxFails: Number(process.env.MINI_SHOP_LOGIN_MAX_FAILS || 5),   // failed logins before an account is locked
+  loginWindowMs: Number(process.env.MINI_SHOP_LOGIN_WINDOW_MS || 60_000),
 };
 
 const now = () => Math.floor(Date.now() / 1000);
@@ -64,6 +66,13 @@ function readBody(req) {
 
 function main() {
   const db = open(cfg.dbFile);
+  // Brute-force guard: failed logins per email in a rolling window. After
+  // cfg.loginMaxFails, the account is locked (429) until the window passes,
+  // even for the right password; a success clears the counter. In-memory only,
+  // like a small rate limiter -- it is the behaviour the security tier proves.
+  const loginFails = new Map();
+  function loginLocked(email) { const r = loginFails.get(email); return !!r && (Date.now() - r.first) < cfg.loginWindowMs && r.count >= cfg.loginMaxFails; }
+  function noteLoginFail(email) { const r = loginFails.get(email); const fresh = !r || (Date.now() - r.first) >= cfg.loginWindowMs; const rec = fresh ? { count: 0, first: Date.now() } : r; rec.count += 1; loginFails.set(email, rec); }
 
   const q = {
     productsPage: db.prepare('SELECT * FROM products WHERE active = 1 AND (? IS NULL OR category_id = ?) ORDER BY CASE WHEN ? = \'price\' THEN price_cents END, CASE WHEN ? = \'name\' THEN name END, id LIMIT ? OFFSET ?'),
@@ -167,8 +176,11 @@ function main() {
     }
     if (req.method === 'POST' && a === 'auth' && b === 'login') {
       const body = await readBody(req);
+      const email = String(body.email || '');
+      if (loginLocked(email)) throw new H.ApiError(429, 'account_locked', 'too many failed logins; try again later');
       const cust = body.email ? q.customerByEmail.get(body.email) : null;
-      if (!cust || cust.password_hash !== H.hashPassword(body.password || '')) throw new H.ApiError(401, 'bad_credentials', 'email or password is wrong');
+      if (!cust || cust.password_hash !== H.hashPassword(body.password || '')) { noteLoginFail(email); throw new H.ApiError(401, 'bad_credentials', 'email or password is wrong'); }
+      loginFails.delete(email);   // a success clears the counter
       const tok = H.token('cust');
       q.setToken.run(tok, cust.id);
       return json(res, 200, { id: cust.id, email: cust.email, token: tok });

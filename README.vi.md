@@ -18,17 +18,24 @@ Không cần tài khoản, không cần key, không dịch vụ trả phí. Clon
 | **mini-shop** | đọc + ghi, DB thật | Một cửa hàng nhỏ trong `services/mini-shop`: một file SQLite, chỉ dùng thư viện chuẩn của Node, một REST API, và các trang HTML nhỏ có nhãn cho Playwright. |
 | **automationexercise.com** | chỉ đọc, chạy thật | Một storefront thật có API công khai — thế giới thật, thứ mà không ai ở đây chỉnh cho pass được. |
 
-**155 case**, mỗi case một ID bất biến, chạy ở **cả hai** stack và đối chiếu
+**165 case**, mỗi case một ID bất biến, chạy ở **cả hai** stack và đối chiếu
 từng case. Mỗi tầng cửa hàng có đều được test đúng ở tầng đó:
 
 | Tầng | Đối tượng | Số case | Ở đâu |
 |---|---|---|---|
 | DB | SQLite mini-shop, đọc trực tiếp | 30 | `be/db` |
 | API | REST mini-shop trên SQLite đó | 35 | `be/api` |
+| API | ranh giới xác thực mini-shop (security) | 10 | `be/api` |
 | API | API công khai automationexercise | 30 | `be/api` |
 | FE | storefront mini-shop (Playwright) | 30 | `fe/ui` |
 | FE | storefront automationexercise (Playwright) | 30 | `fe/ui` |
-| | **Tổng** | **155** | |
+| | **Tổng** | **165** | |
+
+**Tầng security** dò lớp auth như kẻ tấn công: token giả hoặc bị sửa → 401; đăng
+nhập brute-force **khoá tài khoản** (5 lần sai → 429, từ chối cả khi đúng mật khẩu);
+đăng nhập không lộ email có tồn tại hay không (đều trả một mã `bad_credentials`); và
+không response nào lộ password hash. Lockout là một **control thật** service giờ có,
+thêm cùng các test chứng minh nó.
 
 `mini-shop` là nơi có đường **ghi**: checkout là một giao dịch — đọc lại kho, từ
 chối bán quá kho, chốt giá tại thời điểm mua, trừ kho kèm một dòng sổ cái tương

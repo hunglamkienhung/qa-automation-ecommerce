@@ -1,6 +1,6 @@
 # E-commerce — test cases
 
-155 cases across a self-written mini-shop (with a real SQLite database) and the live automationexercise.com. Generated from `../features/*.feature` by `build.js`; do not edit by hand.
+165 cases across a self-written mini-shop (with a real SQLite database) and the live automationexercise.com. Generated from `../features/*.feature` by `build.js`; do not edit by hand.
 
 ## minishop-db (30)
 
@@ -181,3 +181,18 @@
 | 153 | FE/UI | Low | The cheapest on-screen price is a real API price |
 | 154 | FE/UI | Medium | A search result count never exceeds the full grid count |
 | 155 | FE/UI | Low | The products page has a heading |
+
+## minishop-security (10)
+
+| ID | Layer | Priority | Title |
+|---|---|---|---|
+| 156 | BE/API | High | A checkout with a forged token is refused |
+| 157 | BE/API | High | A checkout with a tampered token is refused |
+| 158 | BE/API | High | An order read with a forged token is refused |
+| 159 | BE/API | High | Login reveals nothing about whether an email exists |
+| 160 | BE/API | High | An account locks after too many failed logins |
+| 161 | BE/API | High | A locked account is refused even with the correct password |
+| 162 | BE/API | Medium | A successful login clears the failed-login counter |
+| 163 | BE/API | High | Registration issues a token but never the password hash |
+| 164 | BE/API | High | Login never carries the password hash |
+| 165 | BE/API | Medium | A product listing leaks no credential |

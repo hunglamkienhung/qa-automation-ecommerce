@@ -7,8 +7,8 @@
     "No case is declared Failed: nothing here is currently failing, and manufacturing a failure to have one would be dishonest."
   ],
   "summary": {
-    "total": 155,
-    "Passed": 155,
+    "total": 165,
+    "Passed": 165,
     "Failed": 0,
     "Blocked": 0,
     "note": "nominal: mini-shop running and seeded, the live site reachable, a browser available for the FE tiers"
@@ -631,6 +631,46 @@
       "Blocked"
     ],
     "155": [
+      "Passed",
+      "Blocked"
+    ],
+    "156": [
+      "Passed",
+      "Blocked"
+    ],
+    "157": [
+      "Passed",
+      "Blocked"
+    ],
+    "158": [
+      "Passed",
+      "Blocked"
+    ],
+    "159": [
+      "Passed",
+      "Blocked"
+    ],
+    "160": [
+      "Passed",
+      "Blocked"
+    ],
+    "161": [
+      "Passed",
+      "Blocked"
+    ],
+    "162": [
+      "Passed",
+      "Blocked"
+    ],
+    "163": [
+      "Passed",
+      "Blocked"
+    ],
+    "164": [
+      "Passed",
+      "Blocked"
+    ],
+    "165": [
       "Passed",
       "Blocked"
     ]

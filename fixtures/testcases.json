@@ -9,7 +9,7 @@
       "site-fe": "automationexercise.com storefront (Playwright)"
     },
     "idPolicy": "immutable",
-    "nextId": 156,
+    "nextId": 166,
     "note": "Generated from features/*.feature by testcases/build.js. Every scenario carries @case:N; an N missing here is an error."
   },
   "cases": {
@@ -1835,6 +1835,140 @@
       "priority": "Low",
       "steps": [
         "Then the products page shows an \"All Products\" heading"
+      ]
+    },
+    "156": {
+      "module": "06-minishop-security",
+      "layer": "BE/API",
+      "tier": "minishop-security",
+      "title": "A checkout with a forged token is refused",
+      "priority": "High",
+      "steps": [
+        "Given a fresh cart",
+        "And 1 of product 1 in the cart",
+        "When checkout is posted with a forged token",
+        "Then the response status is 401",
+        "And the response is an error with code \"unauthenticated\""
+      ]
+    },
+    "157": {
+      "module": "06-minishop-security",
+      "layer": "BE/API",
+      "tier": "minishop-security",
+      "title": "A checkout with a tampered token is refused",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 1 of product 1",
+        "When the buyer checks out with a token that extends their own",
+        "Then the response status is 401"
+      ]
+    },
+    "158": {
+      "module": "06-minishop-security",
+      "layer": "BE/API",
+      "tier": "minishop-security",
+      "title": "An order read with a forged token is refused",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer with a cart",
+        "And the cart holds 1 of product 1",
+        "And the buyer checks out",
+        "When the order is read with a forged token",
+        "Then the response status is 401"
+      ]
+    },
+    "159": {
+      "module": "06-minishop-security",
+      "layer": "BE/API",
+      "tier": "minishop-security",
+      "title": "Login reveals nothing about whether an email exists",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer",
+        "When the buyer logs in with a wrong password",
+        "Then the response is an error with code \"bad_credentials\"",
+        "When a login is attempted for an unregistered email",
+        "Then the response is an error with code \"bad_credentials\""
+      ]
+    },
+    "160": {
+      "module": "06-minishop-security",
+      "layer": "BE/API",
+      "tier": "minishop-security",
+      "title": "An account locks after too many failed logins",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer",
+        "When the buyer fails to log in 5 times",
+        "And the buyer logs in with a wrong password",
+        "Then the response status is 429",
+        "And the response is an error with code \"account_locked\""
+      ]
+    },
+    "161": {
+      "module": "06-minishop-security",
+      "layer": "BE/API",
+      "tier": "minishop-security",
+      "title": "A locked account is refused even with the correct password",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer",
+        "When the buyer fails to log in 5 times",
+        "And the buyer logs in with the right password",
+        "Then the response status is 429",
+        "And the response is an error with code \"account_locked\""
+      ]
+    },
+    "162": {
+      "module": "06-minishop-security",
+      "layer": "BE/API",
+      "tier": "minishop-security",
+      "title": "A successful login clears the failed-login counter",
+      "priority": "Medium",
+      "steps": [
+        "Given a registered buyer",
+        "When the buyer fails to log in 4 times",
+        "And the buyer logs in with the right password",
+        "Then the response status is 200",
+        "When the buyer logs in with a wrong password",
+        "Then the response status is 401"
+      ]
+    },
+    "163": {
+      "module": "06-minishop-security",
+      "layer": "BE/API",
+      "tier": "minishop-security",
+      "title": "Registration issues a token but never the password hash",
+      "priority": "High",
+      "steps": [
+        "When a buyer registers",
+        "Then the response status is 201",
+        "And the response has a token",
+        "And the response carries no password hash"
+      ]
+    },
+    "164": {
+      "module": "06-minishop-security",
+      "layer": "BE/API",
+      "tier": "minishop-security",
+      "title": "Login never carries the password hash",
+      "priority": "High",
+      "steps": [
+        "Given a registered buyer",
+        "When the buyer logs in with the right password",
+        "Then the response carries no password hash"
+      ]
+    },
+    "165": {
+      "module": "06-minishop-security",
+      "layer": "BE/API",
+      "tier": "minishop-security",
+      "title": "A product listing leaks no credential",
+      "priority": "Medium",
+      "steps": [
+        "When GET /products?limit=100",
+        "Then the response carries no token and no password hash"
       ]
     }
   }

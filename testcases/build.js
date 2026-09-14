@@ -30,6 +30,7 @@ const LAYER = (tags) => {
 };
 const TIER = (tags) => {
   for (const t of tags) if (t.startsWith('@tier:')) return t.slice(6);
+  if (tags.has('@minishop') && tags.has('@security')) return 'minishop-security';
   if (tags.has('@minishop') && tags.has('@db')) return 'minishop-db';
   if (tags.has('@minishop') && tags.has('@api')) return 'minishop-api';
   if (tags.has('@site') && tags.has('@api')) return 'site-api';

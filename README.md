@@ -26,17 +26,25 @@ Nothing here needs an account, a key, or a paid service. Clone it and it runs.
 | **mini-shop** | read + write, real DB | A small store in `services/mini-shop`: one SQLite file, Node standard library only, a REST API, and small labelled HTML pages for Playwright. |
 | **automationexercise.com** | read-only, live | A live storefront with a public API — the real world, which nobody here can tune to pass. |
 
-**155 cases**, each with an immutable ID, run in **both** stacks and reconciled
+**165 cases**, each with an immutable ID, run in **both** stacks and reconciled
 case-by-case. Every layer the shop has is tested at that layer:
 
 | Layer | Target | Cases | Where |
 |---|---|---|---|
 | DB | mini-shop SQLite, opened directly | 30 | `be/db` |
 | API | mini-shop REST over that SQLite | 35 | `be/api` |
+| API | mini-shop authentication boundaries (security) | 10 | `be/api` |
 | API | automationexercise public API | 30 | `be/api` |
 | FE | mini-shop storefront (Playwright) | 30 | `fe/ui` |
 | FE | automationexercise storefront (Playwright) | 30 | `fe/ui` |
-| | **Total** | **155** | |
+| | **Total** | **165** | |
+
+The **security tier** probes the auth surface like an attacker: a forged or
+tampered bearer token is refused (401); a brute-force login **locks the account**
+(five failures → 429, refused even with the right password); the login reveals
+nothing about whether an email exists (one `bad_credentials` shape either way);
+and no response ever carries a password hash. The lockout is a real control the
+service now enforces, added alongside the tests that prove it.
 
 `mini-shop` is where the **write** paths live: checkout is one transaction that
 re-reads stock, refuses to oversell, captures the price at purchase, decrements
