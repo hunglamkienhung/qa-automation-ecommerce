@@ -986,2623 +986,2649 @@ Feature: The mini-shop REST layer, checked against its own store
     Examples:
       | q1 | q2 |
       | 10 | 9 |
+
+  Scenario Outline: The TENOFF coupon at subtotal <subtotal> applies a flat 1000 discount
+    When the coupon "TENOFF" is applied to a subtotal of <subtotal>
+    Then the response field "discount_cents" is 1000
+
     @case:346
     Examples:
-      | q1 | q2 |
-      | 10 | 10 |
+      | subtotal |
+      | 5000 |
     @case:347
     Examples:
-      | q1 | q2 |
-      | 10 | 11 |
+      | subtotal |
+      | 5100 |
     @case:348
     Examples:
-      | q1 | q2 |
-      | 10 | 12 |
+      | subtotal |
+      | 5200 |
     @case:349
     Examples:
-      | q1 | q2 |
-      | 10 | 13 |
+      | subtotal |
+      | 5300 |
     @case:350
     Examples:
-      | q1 | q2 |
-      | 10 | 14 |
+      | subtotal |
+      | 5400 |
     @case:351
     Examples:
-      | q1 | q2 |
-      | 10 | 15 |
+      | subtotal |
+      | 5500 |
     @case:352
     Examples:
-      | q1 | q2 |
-      | 10 | 16 |
+      | subtotal |
+      | 5600 |
     @case:353
     Examples:
-      | q1 | q2 |
-      | 10 | 17 |
+      | subtotal |
+      | 5700 |
     @case:354
     Examples:
-      | q1 | q2 |
-      | 10 | 18 |
+      | subtotal |
+      | 5800 |
     @case:355
     Examples:
-      | q1 | q2 |
-      | 10 | 19 |
+      | subtotal |
+      | 5900 |
     @case:356
     Examples:
-      | q1 | q2 |
-      | 11 | 1 |
+      | subtotal |
+      | 6000 |
     @case:357
     Examples:
-      | q1 | q2 |
-      | 11 | 2 |
+      | subtotal |
+      | 6100 |
     @case:358
     Examples:
-      | q1 | q2 |
-      | 11 | 3 |
+      | subtotal |
+      | 6200 |
     @case:359
     Examples:
-      | q1 | q2 |
-      | 11 | 4 |
+      | subtotal |
+      | 6300 |
     @case:360
     Examples:
-      | q1 | q2 |
-      | 11 | 5 |
+      | subtotal |
+      | 6400 |
     @case:361
     Examples:
-      | q1 | q2 |
-      | 11 | 6 |
+      | subtotal |
+      | 6500 |
     @case:362
     Examples:
-      | q1 | q2 |
-      | 11 | 7 |
+      | subtotal |
+      | 6600 |
     @case:363
     Examples:
-      | q1 | q2 |
-      | 11 | 8 |
+      | subtotal |
+      | 6700 |
     @case:364
     Examples:
-      | q1 | q2 |
-      | 11 | 9 |
+      | subtotal |
+      | 6800 |
     @case:365
     Examples:
-      | q1 | q2 |
-      | 11 | 10 |
+      | subtotal |
+      | 6900 |
     @case:366
     Examples:
-      | q1 | q2 |
-      | 11 | 11 |
+      | subtotal |
+      | 7000 |
     @case:367
     Examples:
-      | q1 | q2 |
-      | 11 | 12 |
+      | subtotal |
+      | 7100 |
     @case:368
     Examples:
-      | q1 | q2 |
-      | 11 | 13 |
+      | subtotal |
+      | 7200 |
     @case:369
     Examples:
-      | q1 | q2 |
-      | 11 | 14 |
+      | subtotal |
+      | 7300 |
     @case:370
     Examples:
-      | q1 | q2 |
-      | 11 | 15 |
+      | subtotal |
+      | 7400 |
     @case:371
     Examples:
-      | q1 | q2 |
-      | 11 | 16 |
+      | subtotal |
+      | 7500 |
     @case:372
     Examples:
-      | q1 | q2 |
-      | 11 | 17 |
+      | subtotal |
+      | 7600 |
     @case:373
     Examples:
-      | q1 | q2 |
-      | 11 | 18 |
+      | subtotal |
+      | 7700 |
     @case:374
     Examples:
-      | q1 | q2 |
-      | 11 | 19 |
+      | subtotal |
+      | 7800 |
     @case:375
     Examples:
-      | q1 | q2 |
-      | 12 | 1 |
+      | subtotal |
+      | 7900 |
     @case:376
     Examples:
-      | q1 | q2 |
-      | 12 | 2 |
+      | subtotal |
+      | 8000 |
     @case:377
     Examples:
-      | q1 | q2 |
-      | 12 | 3 |
+      | subtotal |
+      | 8100 |
     @case:378
     Examples:
-      | q1 | q2 |
-      | 12 | 4 |
+      | subtotal |
+      | 8200 |
     @case:379
     Examples:
-      | q1 | q2 |
-      | 12 | 5 |
+      | subtotal |
+      | 8300 |
     @case:380
     Examples:
-      | q1 | q2 |
-      | 12 | 6 |
+      | subtotal |
+      | 8400 |
     @case:381
     Examples:
-      | q1 | q2 |
-      | 12 | 7 |
+      | subtotal |
+      | 8500 |
     @case:382
     Examples:
-      | q1 | q2 |
-      | 12 | 8 |
+      | subtotal |
+      | 8600 |
     @case:383
     Examples:
-      | q1 | q2 |
-      | 12 | 9 |
+      | subtotal |
+      | 8700 |
     @case:384
     Examples:
-      | q1 | q2 |
-      | 12 | 10 |
+      | subtotal |
+      | 8800 |
     @case:385
     Examples:
-      | q1 | q2 |
-      | 12 | 11 |
+      | subtotal |
+      | 8900 |
     @case:386
     Examples:
-      | q1 | q2 |
-      | 12 | 12 |
+      | subtotal |
+      | 9000 |
     @case:387
     Examples:
-      | q1 | q2 |
-      | 12 | 13 |
+      | subtotal |
+      | 9100 |
     @case:388
     Examples:
-      | q1 | q2 |
-      | 12 | 14 |
+      | subtotal |
+      | 9200 |
     @case:389
     Examples:
-      | q1 | q2 |
-      | 12 | 15 |
+      | subtotal |
+      | 9300 |
     @case:390
     Examples:
-      | q1 | q2 |
-      | 12 | 16 |
+      | subtotal |
+      | 9400 |
     @case:391
     Examples:
-      | q1 | q2 |
-      | 12 | 17 |
+      | subtotal |
+      | 9500 |
     @case:392
     Examples:
-      | q1 | q2 |
-      | 12 | 18 |
+      | subtotal |
+      | 9600 |
     @case:393
     Examples:
-      | q1 | q2 |
-      | 12 | 19 |
+      | subtotal |
+      | 9700 |
     @case:394
     Examples:
-      | q1 | q2 |
-      | 13 | 1 |
+      | subtotal |
+      | 9800 |
     @case:395
     Examples:
-      | q1 | q2 |
-      | 13 | 2 |
+      | subtotal |
+      | 9900 |
     @case:396
     Examples:
-      | q1 | q2 |
-      | 13 | 3 |
+      | subtotal |
+      | 10000 |
     @case:397
     Examples:
-      | q1 | q2 |
-      | 13 | 4 |
+      | subtotal |
+      | 10100 |
     @case:398
     Examples:
-      | q1 | q2 |
-      | 13 | 5 |
+      | subtotal |
+      | 10200 |
     @case:399
     Examples:
-      | q1 | q2 |
-      | 13 | 6 |
+      | subtotal |
+      | 10300 |
     @case:400
     Examples:
-      | q1 | q2 |
-      | 13 | 7 |
+      | subtotal |
+      | 10400 |
     @case:401
     Examples:
-      | q1 | q2 |
-      | 13 | 8 |
+      | subtotal |
+      | 10500 |
     @case:402
     Examples:
-      | q1 | q2 |
-      | 13 | 9 |
+      | subtotal |
+      | 10600 |
     @case:403
     Examples:
-      | q1 | q2 |
-      | 13 | 10 |
+      | subtotal |
+      | 10700 |
     @case:404
     Examples:
-      | q1 | q2 |
-      | 13 | 11 |
+      | subtotal |
+      | 10800 |
     @case:405
     Examples:
-      | q1 | q2 |
-      | 13 | 12 |
+      | subtotal |
+      | 10900 |
     @case:406
     Examples:
-      | q1 | q2 |
-      | 13 | 13 |
+      | subtotal |
+      | 11000 |
     @case:407
     Examples:
-      | q1 | q2 |
-      | 13 | 14 |
+      | subtotal |
+      | 11100 |
     @case:408
     Examples:
-      | q1 | q2 |
-      | 13 | 15 |
+      | subtotal |
+      | 11200 |
     @case:409
     Examples:
-      | q1 | q2 |
-      | 13 | 16 |
+      | subtotal |
+      | 11300 |
     @case:410
     Examples:
-      | q1 | q2 |
-      | 13 | 17 |
+      | subtotal |
+      | 11400 |
     @case:411
     Examples:
-      | q1 | q2 |
-      | 13 | 18 |
+      | subtotal |
+      | 11500 |
     @case:412
     Examples:
-      | q1 | q2 |
-      | 13 | 19 |
+      | subtotal |
+      | 11600 |
     @case:413
     Examples:
-      | q1 | q2 |
-      | 14 | 1 |
+      | subtotal |
+      | 11700 |
     @case:414
     Examples:
-      | q1 | q2 |
-      | 14 | 2 |
+      | subtotal |
+      | 11800 |
     @case:415
     Examples:
-      | q1 | q2 |
-      | 14 | 3 |
+      | subtotal |
+      | 11900 |
     @case:416
     Examples:
-      | q1 | q2 |
-      | 14 | 4 |
+      | subtotal |
+      | 12000 |
     @case:417
     Examples:
-      | q1 | q2 |
-      | 14 | 5 |
+      | subtotal |
+      | 12100 |
     @case:418
     Examples:
-      | q1 | q2 |
-      | 14 | 6 |
+      | subtotal |
+      | 12200 |
     @case:419
     Examples:
-      | q1 | q2 |
-      | 14 | 7 |
+      | subtotal |
+      | 12300 |
     @case:420
     Examples:
-      | q1 | q2 |
-      | 14 | 8 |
+      | subtotal |
+      | 12400 |
     @case:421
     Examples:
-      | q1 | q2 |
-      | 14 | 9 |
+      | subtotal |
+      | 12500 |
     @case:422
     Examples:
-      | q1 | q2 |
-      | 14 | 10 |
+      | subtotal |
+      | 12600 |
     @case:423
     Examples:
-      | q1 | q2 |
-      | 14 | 11 |
+      | subtotal |
+      | 12700 |
     @case:424
     Examples:
-      | q1 | q2 |
-      | 14 | 12 |
+      | subtotal |
+      | 12800 |
     @case:425
     Examples:
-      | q1 | q2 |
-      | 14 | 13 |
+      | subtotal |
+      | 12900 |
     @case:426
     Examples:
-      | q1 | q2 |
-      | 14 | 14 |
+      | subtotal |
+      | 13000 |
     @case:427
     Examples:
-      | q1 | q2 |
-      | 14 | 15 |
+      | subtotal |
+      | 13100 |
     @case:428
     Examples:
-      | q1 | q2 |
-      | 14 | 16 |
+      | subtotal |
+      | 13200 |
     @case:429
     Examples:
-      | q1 | q2 |
-      | 14 | 17 |
+      | subtotal |
+      | 13300 |
     @case:430
     Examples:
-      | q1 | q2 |
-      | 14 | 18 |
+      | subtotal |
+      | 13400 |
     @case:431
     Examples:
-      | q1 | q2 |
-      | 14 | 19 |
+      | subtotal |
+      | 13500 |
     @case:432
     Examples:
-      | q1 | q2 |
-      | 15 | 1 |
+      | subtotal |
+      | 13600 |
     @case:433
     Examples:
-      | q1 | q2 |
-      | 15 | 2 |
+      | subtotal |
+      | 13700 |
     @case:434
     Examples:
-      | q1 | q2 |
-      | 15 | 3 |
+      | subtotal |
+      | 13800 |
     @case:435
     Examples:
-      | q1 | q2 |
-      | 15 | 4 |
+      | subtotal |
+      | 13900 |
     @case:436
     Examples:
-      | q1 | q2 |
-      | 15 | 5 |
+      | subtotal |
+      | 14000 |
     @case:437
     Examples:
-      | q1 | q2 |
-      | 15 | 6 |
+      | subtotal |
+      | 14100 |
     @case:438
     Examples:
-      | q1 | q2 |
-      | 15 | 7 |
+      | subtotal |
+      | 14200 |
     @case:439
     Examples:
-      | q1 | q2 |
-      | 15 | 8 |
+      | subtotal |
+      | 14300 |
     @case:440
     Examples:
-      | q1 | q2 |
-      | 15 | 9 |
+      | subtotal |
+      | 14400 |
     @case:441
     Examples:
-      | q1 | q2 |
-      | 15 | 10 |
+      | subtotal |
+      | 14500 |
     @case:442
     Examples:
-      | q1 | q2 |
-      | 15 | 11 |
+      | subtotal |
+      | 14600 |
     @case:443
     Examples:
-      | q1 | q2 |
-      | 15 | 12 |
+      | subtotal |
+      | 14700 |
     @case:444
     Examples:
-      | q1 | q2 |
-      | 15 | 13 |
+      | subtotal |
+      | 14800 |
     @case:445
     Examples:
-      | q1 | q2 |
-      | 15 | 14 |
+      | subtotal |
+      | 14900 |
     @case:446
     Examples:
-      | q1 | q2 |
-      | 15 | 15 |
+      | subtotal |
+      | 15000 |
     @case:447
     Examples:
-      | q1 | q2 |
-      | 15 | 16 |
+      | subtotal |
+      | 15100 |
     @case:448
     Examples:
-      | q1 | q2 |
-      | 15 | 17 |
+      | subtotal |
+      | 15200 |
     @case:449
     Examples:
-      | q1 | q2 |
-      | 15 | 18 |
+      | subtotal |
+      | 15300 |
     @case:450
     Examples:
-      | q1 | q2 |
-      | 15 | 19 |
+      | subtotal |
+      | 15400 |
     @case:451
     Examples:
-      | q1 | q2 |
-      | 16 | 1 |
+      | subtotal |
+      | 15500 |
     @case:452
     Examples:
-      | q1 | q2 |
-      | 16 | 2 |
+      | subtotal |
+      | 15600 |
     @case:453
     Examples:
-      | q1 | q2 |
-      | 16 | 3 |
+      | subtotal |
+      | 15700 |
     @case:454
     Examples:
-      | q1 | q2 |
-      | 16 | 4 |
+      | subtotal |
+      | 15800 |
     @case:455
     Examples:
-      | q1 | q2 |
-      | 16 | 5 |
+      | subtotal |
+      | 15900 |
     @case:456
     Examples:
-      | q1 | q2 |
-      | 16 | 6 |
+      | subtotal |
+      | 16000 |
     @case:457
     Examples:
-      | q1 | q2 |
-      | 16 | 7 |
+      | subtotal |
+      | 16100 |
     @case:458
     Examples:
-      | q1 | q2 |
-      | 16 | 8 |
+      | subtotal |
+      | 16200 |
     @case:459
     Examples:
-      | q1 | q2 |
-      | 16 | 9 |
+      | subtotal |
+      | 16300 |
     @case:460
     Examples:
-      | q1 | q2 |
-      | 16 | 10 |
+      | subtotal |
+      | 16400 |
     @case:461
     Examples:
-      | q1 | q2 |
-      | 16 | 11 |
+      | subtotal |
+      | 16500 |
     @case:462
     Examples:
-      | q1 | q2 |
-      | 16 | 12 |
+      | subtotal |
+      | 16600 |
     @case:463
     Examples:
-      | q1 | q2 |
-      | 16 | 13 |
+      | subtotal |
+      | 16700 |
     @case:464
     Examples:
-      | q1 | q2 |
-      | 16 | 14 |
+      | subtotal |
+      | 16800 |
     @case:465
     Examples:
-      | q1 | q2 |
-      | 16 | 15 |
+      | subtotal |
+      | 16900 |
     @case:466
     Examples:
-      | q1 | q2 |
-      | 16 | 16 |
+      | subtotal |
+      | 17000 |
     @case:467
     Examples:
-      | q1 | q2 |
-      | 16 | 17 |
+      | subtotal |
+      | 17100 |
     @case:468
     Examples:
-      | q1 | q2 |
-      | 16 | 18 |
+      | subtotal |
+      | 17200 |
     @case:469
     Examples:
-      | q1 | q2 |
-      | 16 | 19 |
+      | subtotal |
+      | 17300 |
     @case:470
     Examples:
-      | q1 | q2 |
-      | 17 | 1 |
+      | subtotal |
+      | 17400 |
+
+  Scenario Outline: The SAVE10 coupon on a subtotal of <subtotal> discounts <disc>
+    When the coupon "SAVE10" is applied to a subtotal of <subtotal>
+    Then the response field "discount_cents" is <disc>
+
     @case:471
     Examples:
-      | q1 | q2 |
-      | 17 | 2 |
+      | subtotal | disc |
+      | 100 | 10 |
     @case:472
     Examples:
-      | q1 | q2 |
-      | 17 | 3 |
+      | subtotal | disc |
+      | 200 | 20 |
     @case:473
     Examples:
-      | q1 | q2 |
-      | 17 | 4 |
+      | subtotal | disc |
+      | 300 | 30 |
     @case:474
     Examples:
-      | q1 | q2 |
-      | 17 | 5 |
+      | subtotal | disc |
+      | 400 | 40 |
     @case:475
     Examples:
-      | q1 | q2 |
-      | 17 | 6 |
+      | subtotal | disc |
+      | 500 | 50 |
     @case:476
     Examples:
-      | q1 | q2 |
-      | 17 | 7 |
+      | subtotal | disc |
+      | 600 | 60 |
     @case:477
     Examples:
-      | q1 | q2 |
-      | 17 | 8 |
+      | subtotal | disc |
+      | 700 | 70 |
     @case:478
     Examples:
-      | q1 | q2 |
-      | 17 | 9 |
+      | subtotal | disc |
+      | 800 | 80 |
     @case:479
     Examples:
-      | q1 | q2 |
-      | 17 | 10 |
+      | subtotal | disc |
+      | 900 | 90 |
     @case:480
     Examples:
-      | q1 | q2 |
-      | 17 | 11 |
+      | subtotal | disc |
+      | 1000 | 100 |
     @case:481
     Examples:
-      | q1 | q2 |
-      | 17 | 12 |
+      | subtotal | disc |
+      | 1100 | 110 |
     @case:482
     Examples:
-      | q1 | q2 |
-      | 17 | 13 |
+      | subtotal | disc |
+      | 1200 | 120 |
     @case:483
     Examples:
-      | q1 | q2 |
-      | 17 | 14 |
+      | subtotal | disc |
+      | 1300 | 130 |
     @case:484
     Examples:
-      | q1 | q2 |
-      | 17 | 15 |
+      | subtotal | disc |
+      | 1400 | 140 |
     @case:485
     Examples:
-      | q1 | q2 |
-      | 17 | 16 |
+      | subtotal | disc |
+      | 1500 | 150 |
     @case:486
     Examples:
-      | q1 | q2 |
-      | 17 | 17 |
+      | subtotal | disc |
+      | 1600 | 160 |
     @case:487
     Examples:
-      | q1 | q2 |
-      | 17 | 18 |
+      | subtotal | disc |
+      | 1700 | 170 |
     @case:488
     Examples:
-      | q1 | q2 |
-      | 17 | 19 |
+      | subtotal | disc |
+      | 1800 | 180 |
     @case:489
     Examples:
-      | q1 | q2 |
-      | 18 | 1 |
+      | subtotal | disc |
+      | 1900 | 190 |
     @case:490
     Examples:
-      | q1 | q2 |
-      | 18 | 2 |
+      | subtotal | disc |
+      | 2000 | 200 |
     @case:491
     Examples:
-      | q1 | q2 |
-      | 18 | 3 |
+      | subtotal | disc |
+      | 2100 | 210 |
     @case:492
     Examples:
-      | q1 | q2 |
-      | 18 | 4 |
+      | subtotal | disc |
+      | 2200 | 220 |
     @case:493
     Examples:
-      | q1 | q2 |
-      | 18 | 5 |
+      | subtotal | disc |
+      | 2300 | 230 |
     @case:494
     Examples:
-      | q1 | q2 |
-      | 18 | 6 |
+      | subtotal | disc |
+      | 2400 | 240 |
     @case:495
     Examples:
-      | q1 | q2 |
-      | 18 | 7 |
+      | subtotal | disc |
+      | 2500 | 250 |
     @case:496
     Examples:
-      | q1 | q2 |
-      | 18 | 8 |
+      | subtotal | disc |
+      | 2600 | 260 |
     @case:497
     Examples:
-      | q1 | q2 |
-      | 18 | 9 |
+      | subtotal | disc |
+      | 2700 | 270 |
     @case:498
     Examples:
-      | q1 | q2 |
-      | 18 | 10 |
+      | subtotal | disc |
+      | 2800 | 280 |
     @case:499
     Examples:
-      | q1 | q2 |
-      | 18 | 11 |
+      | subtotal | disc |
+      | 2900 | 290 |
     @case:500
     Examples:
-      | q1 | q2 |
-      | 18 | 12 |
+      | subtotal | disc |
+      | 3000 | 300 |
     @case:501
     Examples:
-      | q1 | q2 |
-      | 18 | 13 |
+      | subtotal | disc |
+      | 3100 | 310 |
     @case:502
     Examples:
-      | q1 | q2 |
-      | 18 | 14 |
+      | subtotal | disc |
+      | 3200 | 320 |
     @case:503
     Examples:
-      | q1 | q2 |
-      | 18 | 15 |
+      | subtotal | disc |
+      | 3300 | 330 |
     @case:504
     Examples:
-      | q1 | q2 |
-      | 18 | 16 |
+      | subtotal | disc |
+      | 3400 | 340 |
     @case:505
     Examples:
-      | q1 | q2 |
-      | 18 | 17 |
+      | subtotal | disc |
+      | 3500 | 350 |
     @case:506
     Examples:
-      | q1 | q2 |
-      | 18 | 18 |
+      | subtotal | disc |
+      | 3600 | 360 |
     @case:507
     Examples:
-      | q1 | q2 |
-      | 18 | 19 |
+      | subtotal | disc |
+      | 3700 | 370 |
     @case:508
     Examples:
-      | q1 | q2 |
-      | 19 | 1 |
+      | subtotal | disc |
+      | 3800 | 380 |
     @case:509
     Examples:
-      | q1 | q2 |
-      | 19 | 2 |
+      | subtotal | disc |
+      | 3900 | 390 |
     @case:510
     Examples:
-      | q1 | q2 |
-      | 19 | 3 |
+      | subtotal | disc |
+      | 4000 | 400 |
     @case:511
     Examples:
-      | q1 | q2 |
-      | 19 | 4 |
+      | subtotal | disc |
+      | 4100 | 410 |
     @case:512
     Examples:
-      | q1 | q2 |
-      | 19 | 5 |
+      | subtotal | disc |
+      | 4200 | 420 |
     @case:513
     Examples:
-      | q1 | q2 |
-      | 19 | 6 |
+      | subtotal | disc |
+      | 4300 | 430 |
     @case:514
     Examples:
-      | q1 | q2 |
-      | 19 | 7 |
+      | subtotal | disc |
+      | 4400 | 440 |
     @case:515
     Examples:
-      | q1 | q2 |
-      | 19 | 8 |
+      | subtotal | disc |
+      | 4500 | 450 |
     @case:516
     Examples:
-      | q1 | q2 |
-      | 19 | 9 |
+      | subtotal | disc |
+      | 4600 | 460 |
     @case:517
     Examples:
-      | q1 | q2 |
-      | 19 | 10 |
+      | subtotal | disc |
+      | 4700 | 470 |
     @case:518
     Examples:
-      | q1 | q2 |
-      | 19 | 11 |
+      | subtotal | disc |
+      | 4800 | 480 |
     @case:519
     Examples:
-      | q1 | q2 |
-      | 19 | 12 |
+      | subtotal | disc |
+      | 4900 | 490 |
     @case:520
     Examples:
-      | q1 | q2 |
-      | 19 | 13 |
+      | subtotal | disc |
+      | 5000 | 500 |
     @case:521
     Examples:
-      | q1 | q2 |
-      | 19 | 14 |
+      | subtotal | disc |
+      | 5100 | 510 |
     @case:522
     Examples:
-      | q1 | q2 |
-      | 19 | 15 |
+      | subtotal | disc |
+      | 5200 | 520 |
     @case:523
     Examples:
-      | q1 | q2 |
-      | 19 | 16 |
+      | subtotal | disc |
+      | 5300 | 530 |
     @case:524
     Examples:
-      | q1 | q2 |
-      | 19 | 17 |
+      | subtotal | disc |
+      | 5400 | 540 |
     @case:525
     Examples:
-      | q1 | q2 |
-      | 19 | 18 |
+      | subtotal | disc |
+      | 5500 | 550 |
     @case:526
     Examples:
-      | q1 | q2 |
-      | 19 | 19 |
+      | subtotal | disc |
+      | 5600 | 560 |
     @case:527
     Examples:
-      | q1 | q2 |
-      | 20 | 1 |
+      | subtotal | disc |
+      | 5700 | 570 |
     @case:528
     Examples:
-      | q1 | q2 |
-      | 20 | 2 |
+      | subtotal | disc |
+      | 5800 | 580 |
     @case:529
     Examples:
-      | q1 | q2 |
-      | 20 | 3 |
+      | subtotal | disc |
+      | 5900 | 590 |
     @case:530
     Examples:
-      | q1 | q2 |
-      | 20 | 4 |
+      | subtotal | disc |
+      | 6000 | 600 |
     @case:531
     Examples:
-      | q1 | q2 |
-      | 20 | 5 |
+      | subtotal | disc |
+      | 6100 | 610 |
     @case:532
     Examples:
-      | q1 | q2 |
-      | 20 | 6 |
+      | subtotal | disc |
+      | 6200 | 620 |
     @case:533
     Examples:
-      | q1 | q2 |
-      | 20 | 7 |
+      | subtotal | disc |
+      | 6300 | 630 |
     @case:534
     Examples:
-      | q1 | q2 |
-      | 20 | 8 |
+      | subtotal | disc |
+      | 6400 | 640 |
     @case:535
     Examples:
-      | q1 | q2 |
-      | 20 | 9 |
+      | subtotal | disc |
+      | 6500 | 650 |
     @case:536
     Examples:
-      | q1 | q2 |
-      | 20 | 10 |
+      | subtotal | disc |
+      | 6600 | 660 |
     @case:537
     Examples:
-      | q1 | q2 |
-      | 20 | 11 |
+      | subtotal | disc |
+      | 6700 | 670 |
     @case:538
     Examples:
-      | q1 | q2 |
-      | 20 | 12 |
+      | subtotal | disc |
+      | 6800 | 680 |
     @case:539
     Examples:
-      | q1 | q2 |
-      | 20 | 13 |
+      | subtotal | disc |
+      | 6900 | 690 |
     @case:540
     Examples:
-      | q1 | q2 |
-      | 20 | 14 |
+      | subtotal | disc |
+      | 7000 | 700 |
     @case:541
     Examples:
-      | q1 | q2 |
-      | 20 | 15 |
+      | subtotal | disc |
+      | 7100 | 710 |
     @case:542
     Examples:
-      | q1 | q2 |
-      | 20 | 16 |
+      | subtotal | disc |
+      | 7200 | 720 |
     @case:543
     Examples:
-      | q1 | q2 |
-      | 20 | 17 |
+      | subtotal | disc |
+      | 7300 | 730 |
     @case:544
     Examples:
-      | q1 | q2 |
-      | 20 | 18 |
+      | subtotal | disc |
+      | 7400 | 740 |
     @case:545
     Examples:
-      | q1 | q2 |
-      | 20 | 19 |
+      | subtotal | disc |
+      | 7500 | 750 |
     @case:546
     Examples:
-      | q1 | q2 |
-      | 21 | 1 |
+      | subtotal | disc |
+      | 7600 | 760 |
     @case:547
     Examples:
-      | q1 | q2 |
-      | 21 | 2 |
+      | subtotal | disc |
+      | 7700 | 770 |
     @case:548
     Examples:
-      | q1 | q2 |
-      | 21 | 3 |
+      | subtotal | disc |
+      | 7800 | 780 |
     @case:549
     Examples:
-      | q1 | q2 |
-      | 21 | 4 |
+      | subtotal | disc |
+      | 7900 | 790 |
     @case:550
     Examples:
-      | q1 | q2 |
-      | 21 | 5 |
+      | subtotal | disc |
+      | 8000 | 800 |
     @case:551
     Examples:
-      | q1 | q2 |
-      | 21 | 6 |
+      | subtotal | disc |
+      | 8100 | 810 |
     @case:552
     Examples:
-      | q1 | q2 |
-      | 21 | 7 |
+      | subtotal | disc |
+      | 8200 | 820 |
     @case:553
     Examples:
-      | q1 | q2 |
-      | 21 | 8 |
+      | subtotal | disc |
+      | 8300 | 830 |
     @case:554
     Examples:
-      | q1 | q2 |
-      | 21 | 9 |
+      | subtotal | disc |
+      | 8400 | 840 |
     @case:555
     Examples:
-      | q1 | q2 |
-      | 21 | 10 |
+      | subtotal | disc |
+      | 8500 | 850 |
     @case:556
     Examples:
-      | q1 | q2 |
-      | 21 | 11 |
+      | subtotal | disc |
+      | 8600 | 860 |
     @case:557
     Examples:
-      | q1 | q2 |
-      | 21 | 12 |
+      | subtotal | disc |
+      | 8700 | 870 |
     @case:558
     Examples:
-      | q1 | q2 |
-      | 21 | 13 |
+      | subtotal | disc |
+      | 8800 | 880 |
     @case:559
     Examples:
-      | q1 | q2 |
-      | 21 | 14 |
+      | subtotal | disc |
+      | 8900 | 890 |
     @case:560
     Examples:
-      | q1 | q2 |
-      | 21 | 15 |
+      | subtotal | disc |
+      | 9000 | 900 |
     @case:561
     Examples:
-      | q1 | q2 |
-      | 21 | 16 |
+      | subtotal | disc |
+      | 9100 | 910 |
     @case:562
     Examples:
-      | q1 | q2 |
-      | 21 | 17 |
+      | subtotal | disc |
+      | 9200 | 920 |
     @case:563
     Examples:
-      | q1 | q2 |
-      | 21 | 18 |
+      | subtotal | disc |
+      | 9300 | 930 |
     @case:564
     Examples:
-      | q1 | q2 |
-      | 21 | 19 |
+      | subtotal | disc |
+      | 9400 | 940 |
     @case:565
     Examples:
-      | q1 | q2 |
-      | 22 | 1 |
+      | subtotal | disc |
+      | 9500 | 950 |
     @case:566
     Examples:
-      | q1 | q2 |
-      | 22 | 2 |
+      | subtotal | disc |
+      | 9600 | 960 |
     @case:567
     Examples:
-      | q1 | q2 |
-      | 22 | 3 |
+      | subtotal | disc |
+      | 9700 | 970 |
     @case:568
     Examples:
-      | q1 | q2 |
-      | 22 | 4 |
+      | subtotal | disc |
+      | 9800 | 980 |
     @case:569
     Examples:
-      | q1 | q2 |
-      | 22 | 5 |
+      | subtotal | disc |
+      | 9900 | 990 |
     @case:570
     Examples:
-      | q1 | q2 |
-      | 22 | 6 |
+      | subtotal | disc |
+      | 10000 | 1000 |
     @case:571
     Examples:
-      | q1 | q2 |
-      | 22 | 7 |
+      | subtotal | disc |
+      | 10100 | 1010 |
     @case:572
     Examples:
-      | q1 | q2 |
-      | 22 | 8 |
+      | subtotal | disc |
+      | 10200 | 1020 |
     @case:573
     Examples:
-      | q1 | q2 |
-      | 22 | 9 |
+      | subtotal | disc |
+      | 10300 | 1030 |
     @case:574
     Examples:
-      | q1 | q2 |
-      | 22 | 10 |
+      | subtotal | disc |
+      | 10400 | 1040 |
     @case:575
     Examples:
-      | q1 | q2 |
-      | 22 | 11 |
+      | subtotal | disc |
+      | 10500 | 1050 |
     @case:576
     Examples:
-      | q1 | q2 |
-      | 22 | 12 |
+      | subtotal | disc |
+      | 10600 | 1060 |
     @case:577
     Examples:
-      | q1 | q2 |
-      | 22 | 13 |
+      | subtotal | disc |
+      | 10700 | 1070 |
     @case:578
     Examples:
-      | q1 | q2 |
-      | 22 | 14 |
+      | subtotal | disc |
+      | 10800 | 1080 |
     @case:579
     Examples:
-      | q1 | q2 |
-      | 22 | 15 |
+      | subtotal | disc |
+      | 10900 | 1090 |
     @case:580
     Examples:
-      | q1 | q2 |
-      | 22 | 16 |
+      | subtotal | disc |
+      | 11000 | 1100 |
     @case:581
     Examples:
-      | q1 | q2 |
-      | 22 | 17 |
+      | subtotal | disc |
+      | 11100 | 1110 |
     @case:582
     Examples:
-      | q1 | q2 |
-      | 22 | 18 |
+      | subtotal | disc |
+      | 11200 | 1120 |
     @case:583
     Examples:
-      | q1 | q2 |
-      | 22 | 19 |
+      | subtotal | disc |
+      | 11300 | 1130 |
     @case:584
     Examples:
-      | q1 | q2 |
-      | 23 | 1 |
+      | subtotal | disc |
+      | 11400 | 1140 |
     @case:585
     Examples:
-      | q1 | q2 |
-      | 23 | 2 |
+      | subtotal | disc |
+      | 11500 | 1150 |
     @case:586
     Examples:
-      | q1 | q2 |
-      | 23 | 3 |
+      | subtotal | disc |
+      | 11600 | 1160 |
     @case:587
     Examples:
-      | q1 | q2 |
-      | 23 | 4 |
+      | subtotal | disc |
+      | 11700 | 1170 |
     @case:588
     Examples:
-      | q1 | q2 |
-      | 23 | 5 |
+      | subtotal | disc |
+      | 11800 | 1180 |
     @case:589
     Examples:
-      | q1 | q2 |
-      | 23 | 6 |
+      | subtotal | disc |
+      | 11900 | 1190 |
     @case:590
     Examples:
-      | q1 | q2 |
-      | 23 | 7 |
+      | subtotal | disc |
+      | 12000 | 1200 |
     @case:591
     Examples:
-      | q1 | q2 |
-      | 23 | 8 |
+      | subtotal | disc |
+      | 12100 | 1210 |
     @case:592
     Examples:
-      | q1 | q2 |
-      | 23 | 9 |
+      | subtotal | disc |
+      | 12200 | 1220 |
     @case:593
     Examples:
-      | q1 | q2 |
-      | 23 | 10 |
+      | subtotal | disc |
+      | 12300 | 1230 |
     @case:594
     Examples:
-      | q1 | q2 |
-      | 23 | 11 |
+      | subtotal | disc |
+      | 12400 | 1240 |
     @case:595
     Examples:
-      | q1 | q2 |
-      | 23 | 12 |
+      | subtotal | disc |
+      | 12500 | 1250 |
     @case:596
     Examples:
-      | q1 | q2 |
-      | 23 | 13 |
+      | subtotal | disc |
+      | 12600 | 1260 |
     @case:597
     Examples:
-      | q1 | q2 |
-      | 23 | 14 |
+      | subtotal | disc |
+      | 12700 | 1270 |
     @case:598
     Examples:
-      | q1 | q2 |
-      | 23 | 15 |
+      | subtotal | disc |
+      | 12800 | 1280 |
     @case:599
     Examples:
-      | q1 | q2 |
-      | 23 | 16 |
+      | subtotal | disc |
+      | 12900 | 1290 |
     @case:600
     Examples:
-      | q1 | q2 |
-      | 23 | 17 |
+      | subtotal | disc |
+      | 13000 | 1300 |
     @case:601
     Examples:
-      | q1 | q2 |
-      | 23 | 18 |
+      | subtotal | disc |
+      | 13100 | 1310 |
     @case:602
     Examples:
-      | q1 | q2 |
-      | 23 | 19 |
+      | subtotal | disc |
+      | 13200 | 1320 |
     @case:603
     Examples:
-      | q1 | q2 |
-      | 24 | 1 |
+      | subtotal | disc |
+      | 13300 | 1330 |
     @case:604
     Examples:
-      | q1 | q2 |
-      | 24 | 2 |
+      | subtotal | disc |
+      | 13400 | 1340 |
     @case:605
     Examples:
-      | q1 | q2 |
-      | 24 | 3 |
+      | subtotal | disc |
+      | 13500 | 1350 |
     @case:606
     Examples:
-      | q1 | q2 |
-      | 24 | 4 |
+      | subtotal | disc |
+      | 13600 | 1360 |
     @case:607
     Examples:
-      | q1 | q2 |
-      | 24 | 5 |
+      | subtotal | disc |
+      | 13700 | 1370 |
     @case:608
     Examples:
-      | q1 | q2 |
-      | 24 | 6 |
+      | subtotal | disc |
+      | 13800 | 1380 |
     @case:609
     Examples:
-      | q1 | q2 |
-      | 24 | 7 |
+      | subtotal | disc |
+      | 13900 | 1390 |
     @case:610
     Examples:
-      | q1 | q2 |
-      | 24 | 8 |
+      | subtotal | disc |
+      | 14000 | 1400 |
     @case:611
     Examples:
-      | q1 | q2 |
-      | 24 | 9 |
+      | subtotal | disc |
+      | 14100 | 1410 |
     @case:612
     Examples:
-      | q1 | q2 |
-      | 24 | 10 |
+      | subtotal | disc |
+      | 14200 | 1420 |
     @case:613
     Examples:
-      | q1 | q2 |
-      | 24 | 11 |
+      | subtotal | disc |
+      | 14300 | 1430 |
     @case:614
     Examples:
-      | q1 | q2 |
-      | 24 | 12 |
+      | subtotal | disc |
+      | 14400 | 1440 |
     @case:615
     Examples:
-      | q1 | q2 |
-      | 24 | 13 |
+      | subtotal | disc |
+      | 14500 | 1450 |
     @case:616
     Examples:
-      | q1 | q2 |
-      | 24 | 14 |
+      | subtotal | disc |
+      | 14600 | 1460 |
     @case:617
     Examples:
-      | q1 | q2 |
-      | 24 | 15 |
+      | subtotal | disc |
+      | 14700 | 1470 |
     @case:618
     Examples:
-      | q1 | q2 |
-      | 24 | 16 |
+      | subtotal | disc |
+      | 14800 | 1480 |
     @case:619
     Examples:
-      | q1 | q2 |
-      | 24 | 17 |
+      | subtotal | disc |
+      | 14900 | 1490 |
     @case:620
     Examples:
-      | q1 | q2 |
-      | 24 | 18 |
+      | subtotal | disc |
+      | 15000 | 1500 |
+
+  Scenario Outline: The SAVE10 discount never exceeds a subtotal of <subtotal>
+    When the coupon "SAVE10" is applied to a subtotal of <subtotal>
+    Then the response field "discount_cents" is at most the subtotal <subtotal>
+
     @case:621
     Examples:
-      | q1 | q2 |
-      | 24 | 19 |
+      | subtotal |
+      | 40 |
     @case:622
     Examples:
-      | q1 | q2 |
-      | 25 | 1 |
+      | subtotal |
+      | 77 |
     @case:623
     Examples:
-      | q1 | q2 |
-      | 25 | 2 |
+      | subtotal |
+      | 114 |
     @case:624
     Examples:
-      | q1 | q2 |
-      | 25 | 3 |
+      | subtotal |
+      | 151 |
     @case:625
     Examples:
-      | q1 | q2 |
-      | 25 | 4 |
+      | subtotal |
+      | 188 |
     @case:626
     Examples:
-      | q1 | q2 |
-      | 25 | 5 |
+      | subtotal |
+      | 225 |
     @case:627
     Examples:
-      | q1 | q2 |
-      | 25 | 6 |
+      | subtotal |
+      | 262 |
     @case:628
     Examples:
-      | q1 | q2 |
-      | 25 | 7 |
+      | subtotal |
+      | 299 |
     @case:629
     Examples:
-      | q1 | q2 |
-      | 25 | 8 |
+      | subtotal |
+      | 336 |
     @case:630
     Examples:
-      | q1 | q2 |
-      | 25 | 9 |
+      | subtotal |
+      | 373 |
     @case:631
     Examples:
-      | q1 | q2 |
-      | 25 | 10 |
+      | subtotal |
+      | 410 |
     @case:632
     Examples:
-      | q1 | q2 |
-      | 25 | 11 |
+      | subtotal |
+      | 447 |
     @case:633
     Examples:
-      | q1 | q2 |
-      | 25 | 12 |
+      | subtotal |
+      | 484 |
     @case:634
     Examples:
-      | q1 | q2 |
-      | 25 | 13 |
+      | subtotal |
+      | 521 |
     @case:635
     Examples:
-      | q1 | q2 |
-      | 25 | 14 |
+      | subtotal |
+      | 558 |
     @case:636
     Examples:
-      | q1 | q2 |
-      | 25 | 15 |
+      | subtotal |
+      | 595 |
     @case:637
     Examples:
-      | q1 | q2 |
-      | 25 | 16 |
+      | subtotal |
+      | 632 |
     @case:638
     Examples:
-      | q1 | q2 |
-      | 25 | 17 |
+      | subtotal |
+      | 669 |
     @case:639
     Examples:
-      | q1 | q2 |
-      | 25 | 18 |
+      | subtotal |
+      | 706 |
     @case:640
     Examples:
-      | q1 | q2 |
-      | 25 | 19 |
+      | subtotal |
+      | 743 |
     @case:641
     Examples:
-      | q1 | q2 |
-      | 26 | 1 |
+      | subtotal |
+      | 780 |
     @case:642
     Examples:
-      | q1 | q2 |
-      | 26 | 2 |
+      | subtotal |
+      | 817 |
     @case:643
     Examples:
-      | q1 | q2 |
-      | 26 | 3 |
+      | subtotal |
+      | 854 |
     @case:644
     Examples:
-      | q1 | q2 |
-      | 26 | 4 |
+      | subtotal |
+      | 891 |
     @case:645
     Examples:
-      | q1 | q2 |
-      | 26 | 5 |
+      | subtotal |
+      | 928 |
     @case:646
     Examples:
-      | q1 | q2 |
-      | 26 | 6 |
+      | subtotal |
+      | 965 |
     @case:647
     Examples:
-      | q1 | q2 |
-      | 26 | 7 |
+      | subtotal |
+      | 1002 |
     @case:648
     Examples:
-      | q1 | q2 |
-      | 26 | 8 |
+      | subtotal |
+      | 1039 |
     @case:649
     Examples:
-      | q1 | q2 |
-      | 26 | 9 |
+      | subtotal |
+      | 1076 |
     @case:650
     Examples:
-      | q1 | q2 |
-      | 26 | 10 |
+      | subtotal |
+      | 1113 |
     @case:651
     Examples:
-      | q1 | q2 |
-      | 26 | 11 |
+      | subtotal |
+      | 1150 |
     @case:652
     Examples:
-      | q1 | q2 |
-      | 26 | 12 |
+      | subtotal |
+      | 1187 |
     @case:653
     Examples:
-      | q1 | q2 |
-      | 26 | 13 |
+      | subtotal |
+      | 1224 |
     @case:654
     Examples:
-      | q1 | q2 |
-      | 26 | 14 |
+      | subtotal |
+      | 1261 |
     @case:655
     Examples:
-      | q1 | q2 |
-      | 26 | 15 |
+      | subtotal |
+      | 1298 |
     @case:656
     Examples:
-      | q1 | q2 |
-      | 26 | 16 |
+      | subtotal |
+      | 1335 |
     @case:657
     Examples:
-      | q1 | q2 |
-      | 26 | 17 |
+      | subtotal |
+      | 1372 |
     @case:658
     Examples:
-      | q1 | q2 |
-      | 26 | 18 |
+      | subtotal |
+      | 1409 |
     @case:659
     Examples:
-      | q1 | q2 |
-      | 26 | 19 |
+      | subtotal |
+      | 1446 |
     @case:660
     Examples:
-      | q1 | q2 |
-      | 27 | 1 |
+      | subtotal |
+      | 1483 |
     @case:661
     Examples:
-      | q1 | q2 |
-      | 27 | 2 |
+      | subtotal |
+      | 1520 |
     @case:662
     Examples:
-      | q1 | q2 |
-      | 27 | 3 |
+      | subtotal |
+      | 1557 |
     @case:663
     Examples:
-      | q1 | q2 |
-      | 27 | 4 |
+      | subtotal |
+      | 1594 |
     @case:664
     Examples:
-      | q1 | q2 |
-      | 27 | 5 |
+      | subtotal |
+      | 1631 |
     @case:665
     Examples:
-      | q1 | q2 |
-      | 27 | 6 |
+      | subtotal |
+      | 1668 |
     @case:666
     Examples:
-      | q1 | q2 |
-      | 27 | 7 |
+      | subtotal |
+      | 1705 |
     @case:667
     Examples:
-      | q1 | q2 |
-      | 27 | 8 |
+      | subtotal |
+      | 1742 |
     @case:668
     Examples:
-      | q1 | q2 |
-      | 27 | 9 |
+      | subtotal |
+      | 1779 |
     @case:669
     Examples:
-      | q1 | q2 |
-      | 27 | 10 |
+      | subtotal |
+      | 1816 |
     @case:670
     Examples:
-      | q1 | q2 |
-      | 27 | 11 |
+      | subtotal |
+      | 1853 |
     @case:671
     Examples:
-      | q1 | q2 |
-      | 27 | 12 |
+      | subtotal |
+      | 1890 |
     @case:672
     Examples:
-      | q1 | q2 |
-      | 27 | 13 |
+      | subtotal |
+      | 1927 |
     @case:673
     Examples:
-      | q1 | q2 |
-      | 27 | 14 |
+      | subtotal |
+      | 1964 |
     @case:674
     Examples:
-      | q1 | q2 |
-      | 27 | 15 |
+      | subtotal |
+      | 2001 |
     @case:675
     Examples:
-      | q1 | q2 |
-      | 27 | 16 |
+      | subtotal |
+      | 2038 |
     @case:676
     Examples:
-      | q1 | q2 |
-      | 27 | 17 |
+      | subtotal |
+      | 2075 |
     @case:677
     Examples:
-      | q1 | q2 |
-      | 27 | 18 |
+      | subtotal |
+      | 2112 |
     @case:678
     Examples:
-      | q1 | q2 |
-      | 27 | 19 |
+      | subtotal |
+      | 2149 |
     @case:679
     Examples:
-      | q1 | q2 |
-      | 28 | 1 |
+      | subtotal |
+      | 2186 |
     @case:680
     Examples:
-      | q1 | q2 |
-      | 28 | 2 |
+      | subtotal |
+      | 2223 |
     @case:681
     Examples:
-      | q1 | q2 |
-      | 28 | 3 |
+      | subtotal |
+      | 2260 |
     @case:682
     Examples:
-      | q1 | q2 |
-      | 28 | 4 |
+      | subtotal |
+      | 2297 |
     @case:683
     Examples:
-      | q1 | q2 |
-      | 28 | 5 |
+      | subtotal |
+      | 2334 |
     @case:684
     Examples:
-      | q1 | q2 |
-      | 28 | 6 |
+      | subtotal |
+      | 2371 |
     @case:685
     Examples:
-      | q1 | q2 |
-      | 28 | 7 |
+      | subtotal |
+      | 2408 |
     @case:686
     Examples:
-      | q1 | q2 |
-      | 28 | 8 |
+      | subtotal |
+      | 2445 |
     @case:687
     Examples:
-      | q1 | q2 |
-      | 28 | 9 |
+      | subtotal |
+      | 2482 |
     @case:688
     Examples:
-      | q1 | q2 |
-      | 28 | 10 |
+      | subtotal |
+      | 2519 |
     @case:689
     Examples:
-      | q1 | q2 |
-      | 28 | 11 |
+      | subtotal |
+      | 2556 |
     @case:690
     Examples:
-      | q1 | q2 |
-      | 28 | 12 |
+      | subtotal |
+      | 2593 |
     @case:691
     Examples:
-      | q1 | q2 |
-      | 28 | 13 |
+      | subtotal |
+      | 2630 |
     @case:692
     Examples:
-      | q1 | q2 |
-      | 28 | 14 |
+      | subtotal |
+      | 2667 |
     @case:693
     Examples:
-      | q1 | q2 |
-      | 28 | 15 |
+      | subtotal |
+      | 2704 |
     @case:694
     Examples:
-      | q1 | q2 |
-      | 28 | 16 |
+      | subtotal |
+      | 2741 |
     @case:695
     Examples:
-      | q1 | q2 |
-      | 28 | 17 |
+      | subtotal |
+      | 2778 |
     @case:696
     Examples:
-      | q1 | q2 |
-      | 28 | 18 |
+      | subtotal |
+      | 2815 |
     @case:697
     Examples:
-      | q1 | q2 |
-      | 28 | 19 |
+      | subtotal |
+      | 2852 |
     @case:698
     Examples:
-      | q1 | q2 |
-      | 29 | 1 |
+      | subtotal |
+      | 2889 |
     @case:699
     Examples:
-      | q1 | q2 |
-      | 29 | 2 |
+      | subtotal |
+      | 2926 |
     @case:700
     Examples:
-      | q1 | q2 |
-      | 29 | 3 |
+      | subtotal |
+      | 2963 |
     @case:701
     Examples:
-      | q1 | q2 |
-      | 29 | 4 |
+      | subtotal |
+      | 3000 |
     @case:702
     Examples:
-      | q1 | q2 |
-      | 29 | 5 |
+      | subtotal |
+      | 3037 |
     @case:703
     Examples:
-      | q1 | q2 |
-      | 29 | 6 |
+      | subtotal |
+      | 3074 |
     @case:704
     Examples:
-      | q1 | q2 |
-      | 29 | 7 |
+      | subtotal |
+      | 3111 |
     @case:705
     Examples:
-      | q1 | q2 |
-      | 29 | 8 |
+      | subtotal |
+      | 3148 |
     @case:706
     Examples:
-      | q1 | q2 |
-      | 29 | 9 |
+      | subtotal |
+      | 3185 |
     @case:707
     Examples:
-      | q1 | q2 |
-      | 29 | 10 |
+      | subtotal |
+      | 3222 |
     @case:708
     Examples:
-      | q1 | q2 |
-      | 29 | 11 |
+      | subtotal |
+      | 3259 |
     @case:709
     Examples:
-      | q1 | q2 |
-      | 29 | 12 |
+      | subtotal |
+      | 3296 |
     @case:710
     Examples:
-      | q1 | q2 |
-      | 29 | 13 |
+      | subtotal |
+      | 3333 |
     @case:711
     Examples:
-      | q1 | q2 |
-      | 29 | 14 |
+      | subtotal |
+      | 3370 |
     @case:712
     Examples:
-      | q1 | q2 |
-      | 29 | 15 |
+      | subtotal |
+      | 3407 |
     @case:713
     Examples:
-      | q1 | q2 |
-      | 29 | 16 |
+      | subtotal |
+      | 3444 |
     @case:714
     Examples:
-      | q1 | q2 |
-      | 29 | 17 |
+      | subtotal |
+      | 3481 |
     @case:715
     Examples:
-      | q1 | q2 |
-      | 29 | 18 |
+      | subtotal |
+      | 3518 |
     @case:716
     Examples:
-      | q1 | q2 |
-      | 29 | 19 |
+      | subtotal |
+      | 3555 |
     @case:717
     Examples:
-      | q1 | q2 |
-      | 30 | 1 |
+      | subtotal |
+      | 3592 |
     @case:718
     Examples:
-      | q1 | q2 |
-      | 30 | 2 |
+      | subtotal |
+      | 3629 |
     @case:719
     Examples:
-      | q1 | q2 |
-      | 30 | 3 |
+      | subtotal |
+      | 3666 |
     @case:720
     Examples:
-      | q1 | q2 |
-      | 30 | 4 |
+      | subtotal |
+      | 3703 |
     @case:721
     Examples:
-      | q1 | q2 |
-      | 30 | 5 |
+      | subtotal |
+      | 3740 |
     @case:722
     Examples:
-      | q1 | q2 |
-      | 30 | 6 |
+      | subtotal |
+      | 3777 |
     @case:723
     Examples:
-      | q1 | q2 |
-      | 30 | 7 |
+      | subtotal |
+      | 3814 |
     @case:724
     Examples:
-      | q1 | q2 |
-      | 30 | 8 |
+      | subtotal |
+      | 3851 |
     @case:725
     Examples:
-      | q1 | q2 |
-      | 30 | 9 |
+      | subtotal |
+      | 3888 |
     @case:726
     Examples:
-      | q1 | q2 |
-      | 30 | 10 |
+      | subtotal |
+      | 3925 |
     @case:727
     Examples:
-      | q1 | q2 |
-      | 30 | 11 |
+      | subtotal |
+      | 3962 |
     @case:728
     Examples:
-      | q1 | q2 |
-      | 30 | 12 |
+      | subtotal |
+      | 3999 |
     @case:729
     Examples:
-      | q1 | q2 |
-      | 30 | 13 |
+      | subtotal |
+      | 4036 |
     @case:730
     Examples:
-      | q1 | q2 |
-      | 30 | 14 |
+      | subtotal |
+      | 4073 |
     @case:731
     Examples:
-      | q1 | q2 |
-      | 30 | 15 |
+      | subtotal |
+      | 4110 |
     @case:732
     Examples:
-      | q1 | q2 |
-      | 30 | 16 |
+      | subtotal |
+      | 4147 |
     @case:733
     Examples:
-      | q1 | q2 |
-      | 30 | 17 |
+      | subtotal |
+      | 4184 |
     @case:734
     Examples:
-      | q1 | q2 |
-      | 30 | 18 |
+      | subtotal |
+      | 4221 |
     @case:735
     Examples:
-      | q1 | q2 |
-      | 30 | 19 |
+      | subtotal |
+      | 4258 |
     @case:736
     Examples:
-      | q1 | q2 |
-      | 31 | 1 |
+      | subtotal |
+      | 4295 |
     @case:737
     Examples:
-      | q1 | q2 |
-      | 31 | 2 |
+      | subtotal |
+      | 4332 |
     @case:738
     Examples:
-      | q1 | q2 |
-      | 31 | 3 |
+      | subtotal |
+      | 4369 |
     @case:739
     Examples:
-      | q1 | q2 |
-      | 31 | 4 |
+      | subtotal |
+      | 4406 |
     @case:740
     Examples:
-      | q1 | q2 |
-      | 31 | 5 |
+      | subtotal |
+      | 4443 |
     @case:741
     Examples:
-      | q1 | q2 |
-      | 31 | 6 |
+      | subtotal |
+      | 4480 |
     @case:742
     Examples:
-      | q1 | q2 |
-      | 31 | 7 |
+      | subtotal |
+      | 4517 |
     @case:743
     Examples:
-      | q1 | q2 |
-      | 31 | 8 |
+      | subtotal |
+      | 4554 |
     @case:744
     Examples:
-      | q1 | q2 |
-      | 31 | 9 |
+      | subtotal |
+      | 4591 |
     @case:745
     Examples:
-      | q1 | q2 |
-      | 31 | 10 |
+      | subtotal |
+      | 4628 |
     @case:746
     Examples:
-      | q1 | q2 |
-      | 31 | 11 |
+      | subtotal |
+      | 4665 |
     @case:747
     Examples:
-      | q1 | q2 |
-      | 31 | 12 |
+      | subtotal |
+      | 4702 |
     @case:748
     Examples:
-      | q1 | q2 |
-      | 31 | 13 |
+      | subtotal |
+      | 4739 |
     @case:749
     Examples:
-      | q1 | q2 |
-      | 31 | 14 |
+      | subtotal |
+      | 4776 |
     @case:750
     Examples:
-      | q1 | q2 |
-      | 31 | 15 |
+      | subtotal |
+      | 4813 |
+
+  Scenario Outline: The TENOFF coupon below its minimum spend at subtotal <subtotal> is refused
+    When the coupon "TENOFF" is applied to a subtotal of <subtotal>
+    Then the response status is 400
+
     @case:751
     Examples:
-      | q1 | q2 |
-      | 31 | 16 |
+      | subtotal |
+      | 100 |
     @case:752
     Examples:
-      | q1 | q2 |
-      | 31 | 17 |
+      | subtotal |
+      | 140 |
     @case:753
     Examples:
-      | q1 | q2 |
-      | 31 | 18 |
+      | subtotal |
+      | 180 |
     @case:754
     Examples:
-      | q1 | q2 |
-      | 31 | 19 |
+      | subtotal |
+      | 220 |
     @case:755
     Examples:
-      | q1 | q2 |
-      | 32 | 1 |
+      | subtotal |
+      | 260 |
     @case:756
     Examples:
-      | q1 | q2 |
-      | 32 | 2 |
+      | subtotal |
+      | 300 |
     @case:757
     Examples:
-      | q1 | q2 |
-      | 32 | 3 |
+      | subtotal |
+      | 340 |
     @case:758
     Examples:
-      | q1 | q2 |
-      | 32 | 4 |
+      | subtotal |
+      | 380 |
     @case:759
     Examples:
-      | q1 | q2 |
-      | 32 | 5 |
+      | subtotal |
+      | 420 |
     @case:760
     Examples:
-      | q1 | q2 |
-      | 32 | 6 |
+      | subtotal |
+      | 460 |
     @case:761
     Examples:
-      | q1 | q2 |
-      | 32 | 7 |
+      | subtotal |
+      | 500 |
     @case:762
     Examples:
-      | q1 | q2 |
-      | 32 | 8 |
+      | subtotal |
+      | 540 |
     @case:763
     Examples:
-      | q1 | q2 |
-      | 32 | 9 |
+      | subtotal |
+      | 580 |
     @case:764
     Examples:
-      | q1 | q2 |
-      | 32 | 10 |
+      | subtotal |
+      | 620 |
     @case:765
     Examples:
-      | q1 | q2 |
-      | 32 | 11 |
+      | subtotal |
+      | 660 |
     @case:766
     Examples:
-      | q1 | q2 |
-      | 32 | 12 |
+      | subtotal |
+      | 700 |
     @case:767
     Examples:
-      | q1 | q2 |
-      | 32 | 13 |
+      | subtotal |
+      | 740 |
     @case:768
     Examples:
-      | q1 | q2 |
-      | 32 | 14 |
+      | subtotal |
+      | 780 |
     @case:769
     Examples:
-      | q1 | q2 |
-      | 32 | 15 |
+      | subtotal |
+      | 820 |
     @case:770
     Examples:
-      | q1 | q2 |
-      | 32 | 16 |
+      | subtotal |
+      | 860 |
     @case:771
     Examples:
-      | q1 | q2 |
-      | 32 | 17 |
+      | subtotal |
+      | 900 |
     @case:772
     Examples:
-      | q1 | q2 |
-      | 32 | 18 |
+      | subtotal |
+      | 940 |
     @case:773
     Examples:
-      | q1 | q2 |
-      | 32 | 19 |
+      | subtotal |
+      | 980 |
     @case:774
     Examples:
-      | q1 | q2 |
-      | 33 | 1 |
+      | subtotal |
+      | 1020 |
     @case:775
     Examples:
-      | q1 | q2 |
-      | 33 | 2 |
+      | subtotal |
+      | 1060 |
     @case:776
     Examples:
-      | q1 | q2 |
-      | 33 | 3 |
+      | subtotal |
+      | 1100 |
     @case:777
     Examples:
-      | q1 | q2 |
-      | 33 | 4 |
+      | subtotal |
+      | 1140 |
     @case:778
     Examples:
-      | q1 | q2 |
-      | 33 | 5 |
+      | subtotal |
+      | 1180 |
     @case:779
     Examples:
-      | q1 | q2 |
-      | 33 | 6 |
+      | subtotal |
+      | 1220 |
     @case:780
     Examples:
-      | q1 | q2 |
-      | 33 | 7 |
+      | subtotal |
+      | 1260 |
     @case:781
     Examples:
-      | q1 | q2 |
-      | 33 | 8 |
+      | subtotal |
+      | 1300 |
     @case:782
     Examples:
-      | q1 | q2 |
-      | 33 | 9 |
+      | subtotal |
+      | 1340 |
     @case:783
     Examples:
-      | q1 | q2 |
-      | 33 | 10 |
+      | subtotal |
+      | 1380 |
     @case:784
     Examples:
-      | q1 | q2 |
-      | 33 | 11 |
+      | subtotal |
+      | 1420 |
     @case:785
     Examples:
-      | q1 | q2 |
-      | 33 | 12 |
+      | subtotal |
+      | 1460 |
     @case:786
     Examples:
-      | q1 | q2 |
-      | 33 | 13 |
+      | subtotal |
+      | 1500 |
     @case:787
     Examples:
-      | q1 | q2 |
-      | 33 | 14 |
+      | subtotal |
+      | 1540 |
     @case:788
     Examples:
-      | q1 | q2 |
-      | 33 | 15 |
+      | subtotal |
+      | 1580 |
     @case:789
     Examples:
-      | q1 | q2 |
-      | 33 | 16 |
+      | subtotal |
+      | 1620 |
     @case:790
     Examples:
-      | q1 | q2 |
-      | 33 | 17 |
+      | subtotal |
+      | 1660 |
     @case:791
     Examples:
-      | q1 | q2 |
-      | 33 | 18 |
+      | subtotal |
+      | 1700 |
     @case:792
     Examples:
-      | q1 | q2 |
-      | 33 | 19 |
+      | subtotal |
+      | 1740 |
     @case:793
     Examples:
-      | q1 | q2 |
-      | 34 | 1 |
+      | subtotal |
+      | 1780 |
     @case:794
     Examples:
-      | q1 | q2 |
-      | 34 | 2 |
+      | subtotal |
+      | 1820 |
     @case:795
     Examples:
-      | q1 | q2 |
-      | 34 | 3 |
+      | subtotal |
+      | 1860 |
     @case:796
     Examples:
-      | q1 | q2 |
-      | 34 | 4 |
+      | subtotal |
+      | 1900 |
     @case:797
     Examples:
-      | q1 | q2 |
-      | 34 | 5 |
+      | subtotal |
+      | 1940 |
     @case:798
     Examples:
-      | q1 | q2 |
-      | 34 | 6 |
+      | subtotal |
+      | 1980 |
     @case:799
     Examples:
-      | q1 | q2 |
-      | 34 | 7 |
+      | subtotal |
+      | 2020 |
     @case:800
     Examples:
-      | q1 | q2 |
-      | 34 | 8 |
+      | subtotal |
+      | 2060 |
     @case:801
     Examples:
-      | q1 | q2 |
-      | 34 | 9 |
+      | subtotal |
+      | 2100 |
     @case:802
     Examples:
-      | q1 | q2 |
-      | 34 | 10 |
+      | subtotal |
+      | 2140 |
     @case:803
     Examples:
-      | q1 | q2 |
-      | 34 | 11 |
+      | subtotal |
+      | 2180 |
     @case:804
     Examples:
-      | q1 | q2 |
-      | 34 | 12 |
+      | subtotal |
+      | 2220 |
     @case:805
     Examples:
-      | q1 | q2 |
-      | 34 | 13 |
+      | subtotal |
+      | 2260 |
     @case:806
     Examples:
-      | q1 | q2 |
-      | 34 | 14 |
+      | subtotal |
+      | 2300 |
     @case:807
     Examples:
-      | q1 | q2 |
-      | 34 | 15 |
+      | subtotal |
+      | 2340 |
     @case:808
     Examples:
-      | q1 | q2 |
-      | 34 | 16 |
+      | subtotal |
+      | 2380 |
     @case:809
     Examples:
-      | q1 | q2 |
-      | 34 | 17 |
+      | subtotal |
+      | 2420 |
     @case:810
     Examples:
-      | q1 | q2 |
-      | 34 | 18 |
+      | subtotal |
+      | 2460 |
     @case:811
     Examples:
-      | q1 | q2 |
-      | 34 | 19 |
+      | subtotal |
+      | 2500 |
     @case:812
     Examples:
-      | q1 | q2 |
-      | 35 | 1 |
+      | subtotal |
+      | 2540 |
     @case:813
     Examples:
-      | q1 | q2 |
-      | 35 | 2 |
+      | subtotal |
+      | 2580 |
     @case:814
     Examples:
-      | q1 | q2 |
-      | 35 | 3 |
+      | subtotal |
+      | 2620 |
     @case:815
     Examples:
-      | q1 | q2 |
-      | 35 | 4 |
+      | subtotal |
+      | 2660 |
     @case:816
     Examples:
-      | q1 | q2 |
-      | 35 | 5 |
+      | subtotal |
+      | 2700 |
     @case:817
     Examples:
-      | q1 | q2 |
-      | 35 | 6 |
+      | subtotal |
+      | 2740 |
     @case:818
     Examples:
-      | q1 | q2 |
-      | 35 | 7 |
+      | subtotal |
+      | 2780 |
     @case:819
     Examples:
-      | q1 | q2 |
-      | 35 | 8 |
+      | subtotal |
+      | 2820 |
     @case:820
     Examples:
-      | q1 | q2 |
-      | 35 | 9 |
+      | subtotal |
+      | 2860 |
     @case:821
     Examples:
-      | q1 | q2 |
-      | 35 | 10 |
+      | subtotal |
+      | 2900 |
     @case:822
     Examples:
-      | q1 | q2 |
-      | 35 | 11 |
+      | subtotal |
+      | 2940 |
     @case:823
     Examples:
-      | q1 | q2 |
-      | 35 | 12 |
+      | subtotal |
+      | 2980 |
     @case:824
     Examples:
-      | q1 | q2 |
-      | 35 | 13 |
+      | subtotal |
+      | 3020 |
     @case:825
     Examples:
-      | q1 | q2 |
-      | 35 | 14 |
+      | subtotal |
+      | 3060 |
     @case:826
     Examples:
-      | q1 | q2 |
-      | 35 | 15 |
+      | subtotal |
+      | 3100 |
     @case:827
     Examples:
-      | q1 | q2 |
-      | 35 | 16 |
+      | subtotal |
+      | 3140 |
     @case:828
     Examples:
-      | q1 | q2 |
-      | 35 | 17 |
+      | subtotal |
+      | 3180 |
     @case:829
     Examples:
-      | q1 | q2 |
-      | 35 | 18 |
+      | subtotal |
+      | 3220 |
     @case:830
     Examples:
-      | q1 | q2 |
-      | 35 | 19 |
+      | subtotal |
+      | 3260 |
     @case:831
     Examples:
-      | q1 | q2 |
-      | 36 | 1 |
+      | subtotal |
+      | 3300 |
     @case:832
     Examples:
-      | q1 | q2 |
-      | 36 | 2 |
+      | subtotal |
+      | 3340 |
     @case:833
     Examples:
-      | q1 | q2 |
-      | 36 | 3 |
+      | subtotal |
+      | 3380 |
     @case:834
     Examples:
-      | q1 | q2 |
-      | 36 | 4 |
+      | subtotal |
+      | 3420 |
     @case:835
     Examples:
-      | q1 | q2 |
-      | 36 | 5 |
+      | subtotal |
+      | 3460 |
     @case:836
     Examples:
-      | q1 | q2 |
-      | 36 | 6 |
+      | subtotal |
+      | 3500 |
     @case:837
     Examples:
-      | q1 | q2 |
-      | 36 | 7 |
+      | subtotal |
+      | 3540 |
     @case:838
     Examples:
-      | q1 | q2 |
-      | 36 | 8 |
+      | subtotal |
+      | 3580 |
     @case:839
     Examples:
-      | q1 | q2 |
-      | 36 | 9 |
+      | subtotal |
+      | 3620 |
     @case:840
     Examples:
-      | q1 | q2 |
-      | 36 | 10 |
+      | subtotal |
+      | 3660 |
     @case:841
     Examples:
-      | q1 | q2 |
-      | 36 | 11 |
+      | subtotal |
+      | 3700 |
     @case:842
     Examples:
-      | q1 | q2 |
-      | 36 | 12 |
+      | subtotal |
+      | 3740 |
     @case:843
     Examples:
-      | q1 | q2 |
-      | 36 | 13 |
+      | subtotal |
+      | 3780 |
     @case:844
     Examples:
-      | q1 | q2 |
-      | 36 | 14 |
+      | subtotal |
+      | 3820 |
     @case:845
     Examples:
-      | q1 | q2 |
-      | 36 | 15 |
+      | subtotal |
+      | 3860 |
     @case:846
     Examples:
-      | q1 | q2 |
-      | 36 | 16 |
+      | subtotal |
+      | 3900 |
     @case:847
     Examples:
-      | q1 | q2 |
-      | 36 | 17 |
+      | subtotal |
+      | 3940 |
     @case:848
     Examples:
-      | q1 | q2 |
-      | 36 | 18 |
+      | subtotal |
+      | 3980 |
     @case:849
     Examples:
-      | q1 | q2 |
-      | 36 | 19 |
+      | subtotal |
+      | 4020 |
     @case:850
     Examples:
-      | q1 | q2 |
-      | 37 | 1 |
+      | subtotal |
+      | 4060 |
     @case:851
     Examples:
-      | q1 | q2 |
-      | 37 | 2 |
+      | subtotal |
+      | 4100 |
     @case:852
     Examples:
-      | q1 | q2 |
-      | 37 | 3 |
+      | subtotal |
+      | 4140 |
     @case:853
     Examples:
-      | q1 | q2 |
-      | 37 | 4 |
+      | subtotal |
+      | 4180 |
     @case:854
     Examples:
-      | q1 | q2 |
-      | 37 | 5 |
+      | subtotal |
+      | 4220 |
     @case:855
     Examples:
-      | q1 | q2 |
-      | 37 | 6 |
+      | subtotal |
+      | 4260 |
     @case:856
     Examples:
-      | q1 | q2 |
-      | 37 | 7 |
+      | subtotal |
+      | 4300 |
     @case:857
     Examples:
-      | q1 | q2 |
-      | 37 | 8 |
+      | subtotal |
+      | 4340 |
     @case:858
     Examples:
-      | q1 | q2 |
-      | 37 | 9 |
+      | subtotal |
+      | 4380 |
     @case:859
     Examples:
-      | q1 | q2 |
-      | 37 | 10 |
+      | subtotal |
+      | 4420 |
     @case:860
     Examples:
-      | q1 | q2 |
-      | 37 | 11 |
+      | subtotal |
+      | 4460 |
     @case:861
     Examples:
-      | q1 | q2 |
-      | 37 | 12 |
+      | subtotal |
+      | 4500 |
     @case:862
     Examples:
-      | q1 | q2 |
-      | 37 | 13 |
+      | subtotal |
+      | 4540 |
     @case:863
     Examples:
-      | q1 | q2 |
-      | 37 | 14 |
+      | subtotal |
+      | 4580 |
     @case:864
     Examples:
-      | q1 | q2 |
-      | 37 | 15 |
+      | subtotal |
+      | 4620 |
     @case:865
     Examples:
-      | q1 | q2 |
-      | 37 | 16 |
+      | subtotal |
+      | 4660 |
     @case:866
     Examples:
-      | q1 | q2 |
-      | 37 | 17 |
+      | subtotal |
+      | 4700 |
     @case:867
     Examples:
-      | q1 | q2 |
-      | 37 | 18 |
+      | subtotal |
+      | 4740 |
     @case:868
     Examples:
-      | q1 | q2 |
-      | 37 | 19 |
+      | subtotal |
+      | 4780 |
     @case:869
     Examples:
-      | q1 | q2 |
-      | 38 | 1 |
+      | subtotal |
+      | 4820 |
     @case:870
     Examples:
-      | q1 | q2 |
-      | 38 | 2 |
+      | subtotal |
+      | 4860 |
+
+  Scenario Outline: Adding <qty> of product <pid> beyond its stock is refused
+    Given a fresh cart
+    When <qty> of product <pid> are added to the cart
+    Then the response status is 409
+
     @case:871
     Examples:
-      | q1 | q2 |
-      | 38 | 3 |
+      | qty | pid |
+      | 51 | 1 |
     @case:872
     Examples:
-      | q1 | q2 |
-      | 38 | 4 |
+      | qty | pid |
+      | 21 | 2 |
     @case:873
     Examples:
-      | q1 | q2 |
-      | 38 | 5 |
+      | qty | pid |
+      | 9 | 3 |
     @case:874
     Examples:
-      | q1 | q2 |
-      | 38 | 6 |
+      | qty | pid |
+      | 16 | 4 |
     @case:875
     Examples:
-      | q1 | q2 |
-      | 38 | 7 |
+      | qty | pid |
+      | 6 | 5 |
     @case:876
     Examples:
-      | q1 | q2 |
-      | 38 | 8 |
+      | qty | pid |
+      | 31 | 7 |
     @case:877
     Examples:
-      | q1 | q2 |
-      | 38 | 9 |
+      | qty | pid |
+      | 13 | 8 |
     @case:878
     Examples:
-      | q1 | q2 |
-      | 38 | 10 |
+      | qty | pid |
+      | 52 | 1 |
     @case:879
     Examples:
-      | q1 | q2 |
-      | 38 | 11 |
+      | qty | pid |
+      | 22 | 2 |
     @case:880
     Examples:
-      | q1 | q2 |
-      | 38 | 12 |
+      | qty | pid |
+      | 10 | 3 |
     @case:881
     Examples:
-      | q1 | q2 |
-      | 38 | 13 |
+      | qty | pid |
+      | 17 | 4 |
     @case:882
     Examples:
-      | q1 | q2 |
-      | 38 | 14 |
+      | qty | pid |
+      | 7 | 5 |
     @case:883
     Examples:
-      | q1 | q2 |
-      | 38 | 15 |
+      | qty | pid |
+      | 32 | 7 |
     @case:884
     Examples:
-      | q1 | q2 |
-      | 38 | 16 |
+      | qty | pid |
+      | 14 | 8 |
     @case:885
     Examples:
-      | q1 | q2 |
-      | 38 | 17 |
+      | qty | pid |
+      | 53 | 1 |
     @case:886
     Examples:
-      | q1 | q2 |
-      | 38 | 18 |
+      | qty | pid |
+      | 23 | 2 |
     @case:887
     Examples:
-      | q1 | q2 |
-      | 38 | 19 |
+      | qty | pid |
+      | 11 | 3 |
     @case:888
     Examples:
-      | q1 | q2 |
-      | 39 | 1 |
+      | qty | pid |
+      | 18 | 4 |
     @case:889
     Examples:
-      | q1 | q2 |
-      | 39 | 2 |
+      | qty | pid |
+      | 8 | 5 |
     @case:890
     Examples:
-      | q1 | q2 |
-      | 39 | 3 |
+      | qty | pid |
+      | 33 | 7 |
     @case:891
     Examples:
-      | q1 | q2 |
-      | 39 | 4 |
+      | qty | pid |
+      | 15 | 8 |
     @case:892
     Examples:
-      | q1 | q2 |
-      | 39 | 5 |
+      | qty | pid |
+      | 54 | 1 |
     @case:893
     Examples:
-      | q1 | q2 |
-      | 39 | 6 |
+      | qty | pid |
+      | 24 | 2 |
     @case:894
     Examples:
-      | q1 | q2 |
-      | 39 | 7 |
+      | qty | pid |
+      | 12 | 3 |
     @case:895
     Examples:
-      | q1 | q2 |
-      | 39 | 8 |
+      | qty | pid |
+      | 19 | 4 |
     @case:896
     Examples:
-      | q1 | q2 |
-      | 39 | 9 |
+      | qty | pid |
+      | 9 | 5 |
     @case:897
     Examples:
-      | q1 | q2 |
-      | 39 | 10 |
+      | qty | pid |
+      | 34 | 7 |
     @case:898
     Examples:
-      | q1 | q2 |
-      | 39 | 11 |
+      | qty | pid |
+      | 16 | 8 |
     @case:899
     Examples:
-      | q1 | q2 |
-      | 39 | 12 |
+      | qty | pid |
+      | 55 | 1 |
     @case:900
     Examples:
-      | q1 | q2 |
-      | 39 | 13 |
+      | qty | pid |
+      | 25 | 2 |
     @case:901
     Examples:
-      | q1 | q2 |
-      | 39 | 14 |
+      | qty | pid |
+      | 13 | 3 |
     @case:902
     Examples:
-      | q1 | q2 |
-      | 39 | 15 |
+      | qty | pid |
+      | 20 | 4 |
     @case:903
     Examples:
-      | q1 | q2 |
-      | 39 | 16 |
+      | qty | pid |
+      | 10 | 5 |
     @case:904
     Examples:
-      | q1 | q2 |
-      | 39 | 17 |
+      | qty | pid |
+      | 35 | 7 |
     @case:905
     Examples:
-      | q1 | q2 |
-      | 39 | 18 |
+      | qty | pid |
+      | 17 | 8 |
     @case:906
     Examples:
-      | q1 | q2 |
-      | 39 | 19 |
+      | qty | pid |
+      | 56 | 1 |
     @case:907
     Examples:
-      | q1 | q2 |
-      | 40 | 1 |
+      | qty | pid |
+      | 26 | 2 |
     @case:908
     Examples:
-      | q1 | q2 |
-      | 40 | 2 |
+      | qty | pid |
+      | 14 | 3 |
     @case:909
     Examples:
-      | q1 | q2 |
-      | 40 | 3 |
+      | qty | pid |
+      | 21 | 4 |
     @case:910
     Examples:
-      | q1 | q2 |
-      | 40 | 4 |
+      | qty | pid |
+      | 11 | 5 |
     @case:911
     Examples:
-      | q1 | q2 |
-      | 40 | 5 |
+      | qty | pid |
+      | 36 | 7 |
     @case:912
     Examples:
-      | q1 | q2 |
-      | 40 | 6 |
+      | qty | pid |
+      | 18 | 8 |
     @case:913
     Examples:
-      | q1 | q2 |
-      | 40 | 7 |
+      | qty | pid |
+      | 57 | 1 |
     @case:914
     Examples:
-      | q1 | q2 |
-      | 40 | 8 |
+      | qty | pid |
+      | 27 | 2 |
     @case:915
     Examples:
-      | q1 | q2 |
-      | 40 | 9 |
+      | qty | pid |
+      | 15 | 3 |
     @case:916
     Examples:
-      | q1 | q2 |
-      | 40 | 10 |
+      | qty | pid |
+      | 22 | 4 |
     @case:917
     Examples:
-      | q1 | q2 |
-      | 40 | 11 |
+      | qty | pid |
+      | 12 | 5 |
     @case:918
     Examples:
-      | q1 | q2 |
-      | 40 | 12 |
+      | qty | pid |
+      | 37 | 7 |
     @case:919
     Examples:
-      | q1 | q2 |
-      | 40 | 13 |
+      | qty | pid |
+      | 19 | 8 |
     @case:920
     Examples:
-      | q1 | q2 |
-      | 40 | 14 |
+      | qty | pid |
+      | 58 | 1 |
     @case:921
     Examples:
-      | q1 | q2 |
-      | 40 | 15 |
+      | qty | pid |
+      | 28 | 2 |
     @case:922
     Examples:
-      | q1 | q2 |
-      | 40 | 16 |
+      | qty | pid |
+      | 16 | 3 |
     @case:923
     Examples:
-      | q1 | q2 |
-      | 40 | 17 |
+      | qty | pid |
+      | 23 | 4 |
     @case:924
     Examples:
-      | q1 | q2 |
-      | 40 | 18 |
+      | qty | pid |
+      | 13 | 5 |
     @case:925
     Examples:
-      | q1 | q2 |
-      | 40 | 19 |
+      | qty | pid |
+      | 38 | 7 |
     @case:926
     Examples:
-      | q1 | q2 |
-      | 41 | 1 |
+      | qty | pid |
+      | 20 | 8 |
     @case:927
     Examples:
-      | q1 | q2 |
-      | 41 | 2 |
+      | qty | pid |
+      | 59 | 1 |
     @case:928
     Examples:
-      | q1 | q2 |
-      | 41 | 3 |
+      | qty | pid |
+      | 29 | 2 |
     @case:929
     Examples:
-      | q1 | q2 |
-      | 41 | 4 |
+      | qty | pid |
+      | 17 | 3 |
     @case:930
     Examples:
-      | q1 | q2 |
-      | 41 | 5 |
+      | qty | pid |
+      | 24 | 4 |
     @case:931
     Examples:
-      | q1 | q2 |
-      | 41 | 6 |
+      | qty | pid |
+      | 14 | 5 |
     @case:932
     Examples:
-      | q1 | q2 |
-      | 41 | 7 |
+      | qty | pid |
+      | 39 | 7 |
     @case:933
     Examples:
-      | q1 | q2 |
-      | 41 | 8 |
+      | qty | pid |
+      | 21 | 8 |
     @case:934
     Examples:
-      | q1 | q2 |
-      | 41 | 9 |
+      | qty | pid |
+      | 60 | 1 |
     @case:935
     Examples:
-      | q1 | q2 |
-      | 41 | 10 |
+      | qty | pid |
+      | 30 | 2 |
     @case:936
     Examples:
-      | q1 | q2 |
-      | 41 | 11 |
+      | qty | pid |
+      | 18 | 3 |
     @case:937
     Examples:
-      | q1 | q2 |
-      | 41 | 12 |
+      | qty | pid |
+      | 25 | 4 |
     @case:938
     Examples:
-      | q1 | q2 |
-      | 41 | 13 |
+      | qty | pid |
+      | 15 | 5 |
     @case:939
     Examples:
-      | q1 | q2 |
-      | 41 | 14 |
+      | qty | pid |
+      | 40 | 7 |
     @case:940
     Examples:
-      | q1 | q2 |
-      | 41 | 15 |
+      | qty | pid |
+      | 22 | 8 |
     @case:941
     Examples:
-      | q1 | q2 |
-      | 41 | 16 |
+      | qty | pid |
+      | 61 | 1 |
     @case:942
     Examples:
-      | q1 | q2 |
-      | 41 | 17 |
+      | qty | pid |
+      | 31 | 2 |
     @case:943
     Examples:
-      | q1 | q2 |
-      | 41 | 18 |
+      | qty | pid |
+      | 19 | 3 |
     @case:944
     Examples:
-      | q1 | q2 |
-      | 41 | 19 |
+      | qty | pid |
+      | 26 | 4 |
     @case:945
     Examples:
-      | q1 | q2 |
-      | 42 | 1 |
+      | qty | pid |
+      | 16 | 5 |
     @case:946
     Examples:
-      | q1 | q2 |
-      | 42 | 2 |
+      | qty | pid |
+      | 41 | 7 |
     @case:947
     Examples:
-      | q1 | q2 |
-      | 42 | 3 |
+      | qty | pid |
+      | 23 | 8 |
     @case:948
     Examples:
-      | q1 | q2 |
-      | 42 | 4 |
+      | qty | pid |
+      | 62 | 1 |
     @case:949
     Examples:
-      | q1 | q2 |
-      | 42 | 5 |
+      | qty | pid |
+      | 32 | 2 |
     @case:950
     Examples:
-      | q1 | q2 |
-      | 42 | 6 |
+      | qty | pid |
+      | 20 | 3 |
     @case:951
     Examples:
-      | q1 | q2 |
-      | 42 | 7 |
+      | qty | pid |
+      | 27 | 4 |
     @case:952
     Examples:
-      | q1 | q2 |
-      | 42 | 8 |
+      | qty | pid |
+      | 17 | 5 |
     @case:953
     Examples:
-      | q1 | q2 |
-      | 42 | 9 |
+      | qty | pid |
+      | 42 | 7 |
     @case:954
     Examples:
-      | q1 | q2 |
-      | 42 | 10 |
+      | qty | pid |
+      | 24 | 8 |
     @case:955
     Examples:
-      | q1 | q2 |
-      | 42 | 11 |
+      | qty | pid |
+      | 63 | 1 |
     @case:956
     Examples:
-      | q1 | q2 |
-      | 42 | 12 |
+      | qty | pid |
+      | 33 | 2 |
     @case:957
     Examples:
-      | q1 | q2 |
-      | 42 | 13 |
+      | qty | pid |
+      | 21 | 3 |
     @case:958
     Examples:
-      | q1 | q2 |
-      | 42 | 14 |
+      | qty | pid |
+      | 28 | 4 |
     @case:959
     Examples:
-      | q1 | q2 |
-      | 42 | 15 |
+      | qty | pid |
+      | 18 | 5 |
     @case:960
     Examples:
-      | q1 | q2 |
-      | 42 | 16 |
+      | qty | pid |
+      | 43 | 7 |
     @case:961
     Examples:
-      | q1 | q2 |
-      | 42 | 17 |
+      | qty | pid |
+      | 25 | 8 |
     @case:962
     Examples:
-      | q1 | q2 |
-      | 42 | 18 |
+      | qty | pid |
+      | 64 | 1 |
     @case:963
     Examples:
-      | q1 | q2 |
-      | 42 | 19 |
+      | qty | pid |
+      | 34 | 2 |
     @case:964
     Examples:
-      | q1 | q2 |
-      | 43 | 1 |
+      | qty | pid |
+      | 22 | 3 |
     @case:965
     Examples:
-      | q1 | q2 |
-      | 43 | 2 |
+      | qty | pid |
+      | 29 | 4 |
     @case:966
     Examples:
-      | q1 | q2 |
-      | 43 | 3 |
+      | qty | pid |
+      | 19 | 5 |
     @case:967
     Examples:
-      | q1 | q2 |
-      | 43 | 4 |
+      | qty | pid |
+      | 44 | 7 |
     @case:968
     Examples:
-      | q1 | q2 |
-      | 43 | 5 |
+      | qty | pid |
+      | 26 | 8 |
     @case:969
     Examples:
-      | q1 | q2 |
-      | 43 | 6 |
+      | qty | pid |
+      | 65 | 1 |
     @case:970
     Examples:
-      | q1 | q2 |
-      | 43 | 7 |
+      | qty | pid |
+      | 35 | 2 |
     @case:971
     Examples:
-      | q1 | q2 |
-      | 43 | 8 |
+      | qty | pid |
+      | 23 | 3 |
     @case:972
     Examples:
-      | q1 | q2 |
-      | 43 | 9 |
+      | qty | pid |
+      | 30 | 4 |
     @case:973
     Examples:
-      | q1 | q2 |
-      | 43 | 10 |
+      | qty | pid |
+      | 20 | 5 |
     @case:974
     Examples:
-      | q1 | q2 |
-      | 43 | 11 |
+      | qty | pid |
+      | 45 | 7 |
     @case:975
     Examples:
-      | q1 | q2 |
-      | 43 | 12 |
+      | qty | pid |
+      | 27 | 8 |
     @case:976
     Examples:
-      | q1 | q2 |
-      | 43 | 13 |
+      | qty | pid |
+      | 66 | 1 |
     @case:977
     Examples:
-      | q1 | q2 |
-      | 43 | 14 |
+      | qty | pid |
+      | 36 | 2 |
     @case:978
     Examples:
-      | q1 | q2 |
-      | 43 | 15 |
+      | qty | pid |
+      | 24 | 3 |
     @case:979
     Examples:
-      | q1 | q2 |
-      | 43 | 16 |
+      | qty | pid |
+      | 31 | 4 |
     @case:980
     Examples:
-      | q1 | q2 |
-      | 43 | 17 |
+      | qty | pid |
+      | 21 | 5 |
     @case:981
     Examples:
-      | q1 | q2 |
-      | 43 | 18 |
+      | qty | pid |
+      | 46 | 7 |
     @case:982
     Examples:
-      | q1 | q2 |
-      | 43 | 19 |
+      | qty | pid |
+      | 28 | 8 |
     @case:983
     Examples:
-      | q1 | q2 |
-      | 44 | 1 |
+      | qty | pid |
+      | 67 | 1 |
     @case:984
     Examples:
-      | q1 | q2 |
-      | 44 | 2 |
+      | qty | pid |
+      | 37 | 2 |
     @case:985
     Examples:
-      | q1 | q2 |
-      | 44 | 3 |
+      | qty | pid |
+      | 25 | 3 |
     @case:986
     Examples:
-      | q1 | q2 |
-      | 44 | 4 |
+      | qty | pid |
+      | 32 | 4 |
     @case:987
     Examples:
-      | q1 | q2 |
-      | 44 | 5 |
+      | qty | pid |
+      | 22 | 5 |
     @case:988
     Examples:
-      | q1 | q2 |
-      | 44 | 6 |
+      | qty | pid |
+      | 47 | 7 |
     @case:989
     Examples:
-      | q1 | q2 |
-      | 44 | 7 |
+      | qty | pid |
+      | 29 | 8 |
     @case:990
     Examples:
-      | q1 | q2 |
-      | 44 | 8 |
+      | qty | pid |
+      | 68 | 1 |
     @case:991
     Examples:
-      | q1 | q2 |
-      | 44 | 9 |
+      | qty | pid |
+      | 38 | 2 |
     @case:992
     Examples:
-      | q1 | q2 |
-      | 44 | 10 |
+      | qty | pid |
+      | 26 | 3 |
     @case:993
     Examples:
-      | q1 | q2 |
-      | 44 | 11 |
+      | qty | pid |
+      | 33 | 4 |
     @case:994
     Examples:
-      | q1 | q2 |
-      | 44 | 12 |
+      | qty | pid |
+      | 23 | 5 |
     @case:995
     Examples:
-      | q1 | q2 |
-      | 44 | 13 |
+      | qty | pid |
+      | 48 | 7 |
     @case:996
     Examples:
-      | q1 | q2 |
-      | 44 | 14 |
+      | qty | pid |
+      | 30 | 8 |
     @case:997
     Examples:
-      | q1 | q2 |
-      | 44 | 15 |
+      | qty | pid |
+      | 69 | 1 |
     @case:998
     Examples:
-      | q1 | q2 |
-      | 44 | 16 |
+      | qty | pid |
+      | 39 | 2 |
     @case:999
     Examples:
-      | q1 | q2 |
-      | 44 | 17 |
+      | qty | pid |
+      | 27 | 3 |
     @case:1000
     Examples:
-      | q1 | q2 |
-      | 44 | 18 |
+      | qty | pid |
+      | 34 | 4 |
