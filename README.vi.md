@@ -18,18 +18,18 @@ Không cần tài khoản, không cần key, không dịch vụ trả phí. Clon
 | **mini-shop** | đọc + ghi, DB thật | Một cửa hàng nhỏ trong `services/mini-shop`: một file SQLite, chỉ dùng thư viện chuẩn của Node, một REST API, và các trang HTML nhỏ có nhãn cho Playwright. |
 | **automationexercise.com** | chỉ đọc, chạy thật | Một storefront thật có API công khai — thế giới thật, thứ mà không ai ở đây chỉnh cho pass được. |
 
-**165 case**, mỗi case một ID bất biến, chạy ở **cả hai** stack và đối chiếu
+**1000 case**, mỗi case một ID bất biến, chạy ở **cả hai** stack và đối chiếu
 từng case. Mỗi tầng cửa hàng có đều được test đúng ở tầng đó:
 
 | Tầng | Đối tượng | Số case | Ở đâu |
 |---|---|---|---|
 | DB | SQLite mini-shop, đọc trực tiếp | 30 | `be/db` |
-| API | REST mini-shop trên SQLite đó | 35 | `be/api` |
+| API | REST mini-shop trên SQLite đó | 870 | `be/api` |
 | API | ranh giới xác thực mini-shop (security) | 10 | `be/api` |
 | API | API công khai automationexercise | 30 | `be/api` |
 | FE | storefront mini-shop (Playwright) | 30 | `fe/ui` |
 | FE | storefront automationexercise (Playwright) | 30 | `fe/ui` |
-| | **Tổng** | **165** | |
+| | **Tổng** | **1000** | |
 
 **Tầng security** dò lớp auth như kẻ tấn công: token giả hoặc bị sửa → 401; đăng
 nhập brute-force **khoá tài khoản** (5 lần sai → 429, từ chối cả khi đúng mật khẩu);

@@ -26,18 +26,18 @@ Nothing here needs an account, a key, or a paid service. Clone it and it runs.
 | **mini-shop** | read + write, real DB | A small store in `services/mini-shop`: one SQLite file, Node standard library only, a REST API, and small labelled HTML pages for Playwright. |
 | **automationexercise.com** | read-only, live | A live storefront with a public API — the real world, which nobody here can tune to pass. |
 
-**165 cases**, each with an immutable ID, run in **both** stacks and reconciled
+**1000 cases**, each with an immutable ID, run in **both** stacks and reconciled
 case-by-case. Every layer the shop has is tested at that layer:
 
 | Layer | Target | Cases | Where |
 |---|---|---|---|
 | DB | mini-shop SQLite, opened directly | 30 | `be/db` |
-| API | mini-shop REST over that SQLite | 35 | `be/api` |
+| API | mini-shop REST over that SQLite | 870 | `be/api` |
 | API | mini-shop authentication boundaries (security) | 10 | `be/api` |
 | API | automationexercise public API | 30 | `be/api` |
 | FE | mini-shop storefront (Playwright) | 30 | `fe/ui` |
 | FE | automationexercise storefront (Playwright) | 30 | `fe/ui` |
-| | **Total** | **165** | |
+| | **Total** | **1000** | |
 
 The **security tier** probes the auth surface like an attacker: a forged or
 tampered bearer token is refused (401); a brute-force login **locks the account**
